@@ -5,7 +5,7 @@
 // Login   <vallee_c@pc-vallee_c>
 // 
 // Started on  Thu Jul  3 17:05:02 2014 david vallee
-// Last update Fri Jul  4 16:58:55 2014 david vallee
+// Last update Sun Jul  6 05:38:31 2014 david vallee
 //
 
 #ifndef NETWORK_H_
@@ -20,10 +20,11 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <string.h>
+#include <iostream>
 
 int	connect_to_server(char *ip, int port);
 int	close_connect(int fd);
-char	*get_msg(int fd);
-int	send_msg(int fd, char *msg);
+std::string get_msg(int fd);
+int	send_msg(int fd, const char *msg);
 
 #endif /* !NETWORK_H_ */

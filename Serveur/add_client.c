@@ -5,7 +5,7 @@
 ** Login   <vallee_c@pc-vallee_c>
 ** 
 ** Started on  Fri Jul  4 14:25:16 2014 david vallee
-** Last update Fri Jul  4 17:21:01 2014 david vallee
+** Last update Sat Jul  5 18:24:54 2014 david vallee
 */
 
 #include "serveur.h"
@@ -22,4 +22,5 @@ void			add_client(t_serveur *s)
   s->ctab[cs].free = NOFREE;
   s->idmax += 1;
   s->ctab[cs].id = s->idmax;
+  s->ctab[cs].init = NOINIT;
 }

@@ -5,12 +5,12 @@
 ** Login   <vallee_c@pc-vallee_c>
 ** 
 ** Started on  Sun Apr 20 09:26:38 2014 david vallee
-** Last update Fri Jul  4 15:52:15 2014 david vallee
+** Last update Sat Jul  5 19:59:30 2014 david vallee
 */
 
 #include "serveur.h"
 
-int	read_cmd(t_serveur *s, int fd)
+int	read_cmd(t_serveur *s, t_world *world, int fd)
 {
   int	r;
   char	cmd[4096];
@@ -30,8 +30,13 @@ int	read_cmd(t_serveur *s, int fd)
   cmd[r] = '\0';
 
   // Ici parsser Commande Update world et repondre au client 
-
-  send_msgToAll_exeptOne(s, cmd, fd);
+  if (strncmp(cmd, "GRAPHICS", 8) == 0)
+    {
+      s->fdMonitor = fd;
+      initGraphMonitor(world, fd);
+    }
+  else
+    send_msgToAll_exeptOne(s, cmd, fd);
   return (0);
 }
 
@@ -59,14 +64,14 @@ int			fdReset(t_serveur *s, fd_set* fd_read, struct timeval *tv)
 
 int			serveur(t_option *option)
 {
-  //t_World		world;
+  t_world		world;
   t_serveur		s;
   fd_set		fd_read;
   int			i;
   struct timeval	tv;
 
   init_serveur(&s, option);
-  //init_world(&world, &s, option);
+  init_world(&world, option);
   while (s.isRuning)
     {
       fdReset(&s, &fd_read, &tv);
@@ -86,7 +91,7 @@ int			serveur(t_option *option)
       while (i < MAX_CLIENT)
       	{
       	  if (i != s.fd && FD_ISSET(i, &fd_read))
-	    read_cmd(&s, i);
+	    read_cmd(&s, &world, i);
 	  ++i;
       	}
 

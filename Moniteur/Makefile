@@ -5,7 +5,7 @@
 ## Login   <vallee_c@epitech.net>
 ## 
 ## Started on  Fri Mar 28 17:01:44 2014 david vallee
-## Last update Sat Jul  5 13:29:38 2014 david vallee
+## Last update Sat Jul  5 20:51:40 2014 david vallee
 ##
 
 CXX	= g++
@@ -20,7 +20,12 @@ SRC	= graphEngine/GraphEngine.cpp \
 	  graphEngine/Primitive/Skybox.cpp \
 	  graphEngine/Primitive/Object.cpp \
 	  graphEngine/AObject.cpp \
-	  src/main.cpp
+	  network/connect.cpp \
+	  network/get_msg.cpp \
+	  network/send_msg.cpp \
+	  src/main.cpp \
+	  src/load.cpp \
+	  src/World.cpp
 
 OBJ	= $(SRC:.cpp=.o)
 NAME	= moniteur

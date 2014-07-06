@@ -5,8 +5,10 @@
 ** Login   <vallee_c@pc-vallee_c>
 ** 
 ** Started on  Fri Jul  4 16:33:21 2014 david vallee
-** Last update Fri Jul  4 16:34:30 2014 david vallee
+** Last update Sat Jul  5 17:35:25 2014 david vallee
 */
+
+#include "network.h"
 
 int	send_msg(int fd, char *msg)
 {

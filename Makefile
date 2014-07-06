@@ -5,7 +5,7 @@
 ## Login   <vallee_c@epitech.net>
 ## 
 ## Started on  Fri Mar 28 17:01:44 2014 david vallee
-## Last update Sat Jul  5 14:43:22 2014 david vallee
+## Last update Sun Jul  6 12:40:11 2014 gonon_c
 ##
 
 CC	= cc
@@ -23,7 +23,11 @@ SRC_S	= Serveur/main.c \
 	  Serveur/init.c \
 	  Serveur/serveur.c \
 	  Serveur/add_client.c \
-	  Serveur/send_msg.c
+	  Serveur/send_msg.c \
+	  Serveur/Cmd/msz.c \
+	  Serveur/Option/option.c\
+	  Serveur/Option/team_list.c\
+	  Serveur/initGraphMontor.c
 
 OBJ_C	= $(SRC_C:.c=.o)
 

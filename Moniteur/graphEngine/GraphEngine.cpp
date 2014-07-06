@@ -5,7 +5,7 @@
 // Login   <vallee_c@pc-vallee_c>
 // 
 // Started on  Thu Jul  3 14:37:59 2014 david vallee
-// Last update Sat Jul  5 14:27:53 2014 david vallee
+// Last update Sun Jul  6 11:10:12 2014 david vallee
 //
 
 #include "GraphEngine.hpp"
@@ -19,9 +19,17 @@ graphEngine::graphEngine() : test(10, 0.5, 10, 1, 3, 20, 20),
 {
 }
 
+graphEngine::graphEngine(World &world) : test(10, 0.5, 10, 1, 3, world.getSizeX(), world.getSizeY()),
+			     skybox(0, 0, 0, 500),
+			     obj(5, 0.5, 8, 1, 4)
+{
+  std::cout << world.getSizeX() << " " << world.getSizeY() << std::endl;
+  ground = new Ground(0, 0, 0, world.getSizeX(), world.getSizeY());
+}
+
 graphEngine::~graphEngine()
 {
-
+  delete ground;
 }
 
 int	graphEngine::init()
@@ -41,10 +49,10 @@ int	graphEngine::init()
   camera.initialize(WINX, WINY);
 
   // Initialize
-  ground.initialize();
-  ground.LoadTexture(texManager.getTexture("ground"));
+  ground->initialize();
+  ground->LoadTexture(texManager.getTexture("ground"));
   test.initialize();
-  test.LoadTexture(texManager.getTexture("caisse"));
+  test.LoadTexture(texManager.getTexture("pika"));
   skybox.initialize();
   skybox.LoadTexture(texManager.getTexture("sky"));
   obj.initialize();
@@ -68,7 +76,7 @@ int	graphEngine::draw()
 {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   _shader.bind();
-  ground.draw(_shader, _clock);
+  ground->draw(_shader, _clock);
   test.draw(_shader, _clock);
   skybox.draw(_shader, _clock);
   obj.draw(_shader, _clock);

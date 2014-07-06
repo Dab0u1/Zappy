@@ -5,7 +5,7 @@
 // Login   <vallee_c@pc-vallee_c>
 // 
 // Started on  Thu Jul  3 14:31:22 2014 david vallee
-// Last update Sat Jul  5 13:37:23 2014 david vallee
+// Last update Sun Jul  6 05:31:29 2014 david vallee
 //
 
 #ifndef GRAPHENGINE_HPP_
@@ -18,6 +18,7 @@
 # include "Primitive/Billboard.hpp"
 # include "Primitive/Skybox.hpp"
 # include "Primitive/Object.hpp"
+# include "../src/World.hpp"
 
 class	graphEngine
 {
@@ -30,7 +31,7 @@ private:
 
   TextureManager	texManager;
   Camera		camera;
-  Ground		ground;
+  Ground		*ground;
   Skybox		skybox;
   Billboard		test;
   Object		obj;
@@ -38,6 +39,7 @@ private:
 public:
 
   graphEngine();
+  graphEngine(World &);
   ~graphEngine();
   int		init();
   int		getKey();

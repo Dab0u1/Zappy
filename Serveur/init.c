@@ -5,12 +5,12 @@
 ** Login   <vallee_c@pc-vallee_c>
 ** 
 ** Started on  Fri Jul  4 14:22:42 2014 david vallee
-** Last update Fri Jul  4 17:21:18 2014 david vallee
+** Last update Sat Jul  5 19:56:53 2014 david vallee
 */
 
 #include "serveur.h"
 
-int	init_serveur(t_serveur *s, t_option *option)
+int		init_serveur(t_serveur *s, t_option *option)
 {
   int	i;
 
@@ -32,4 +32,13 @@ int	init_serveur(t_serveur *s, t_option *option)
       ++i;
     }
   return(0);
+}
+
+int	init_world(t_world *world, t_option *option)
+{
+  world->sizeX = option->worldX;
+  world->sizeY = option->worldY;
+  world->team = option->team;
+  world->t = option->t;
+  //  world->map = GenerateMap(world->sizeX, world->sizeY);
 }

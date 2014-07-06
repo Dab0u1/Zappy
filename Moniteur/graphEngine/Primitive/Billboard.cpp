@@ -5,7 +5,7 @@
 // Login   <vallee_c@pc-vallee_c>
 // 
 // Started on  Wed Jun  4 21:18:18 2014 david vallee
-// Last update Sat Jul  5 13:33:41 2014 david vallee
+// Last update Sun Jul  6 11:14:49 2014 david vallee
 //
 
 #include "Billboard.hpp"
@@ -31,7 +31,7 @@ bool		Billboard::initialize()
   int	i;
 
   _time = 0;
-  anime = 0;
+  anime = 1;
   orient = 0;
   rot = 0;
   _speed = 4;
@@ -132,7 +132,7 @@ void		Billboard::update(gdl::Clock const &clock, gdl::Input &input, glm::vec3 p,
   else
     {
       _time = 0;
-      anime = 0;
+      anime = 1;
     }
 
   if (input.getKey(SDLK_LEFT) == false &&
@@ -168,14 +168,14 @@ void		Billboard::update(gdl::Clock const &clock, gdl::Input &input, glm::vec3 p,
   if (move)
     translate(dir * static_cast<float>(clock.getElapsed()) * _speed);
     
-  if (_position.x < 0)
+  if (_position.x < 1)
     _position.x = mapsizeX;
   if (_position.x > mapsizeX)
-    _position.x = 0;
-  if (_position.z < 0)
+    _position.x = 1;
+  if (_position.z < 1)
     _position.z = mapsizeZ;
   if (_position.z > mapsizeZ)
-    _position.z = 0;
+    _position.z = 1;
 
   orient = getOrient(p);
   float		angle_z;

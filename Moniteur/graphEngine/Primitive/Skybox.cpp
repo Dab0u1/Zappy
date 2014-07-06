@@ -5,7 +5,7 @@
 ** Login   <vallee_c@pc-vallee_c>
 ** 
 ** Started on  Wed May  7 07:49:45 2014 david vallee
-// Last update Sat Jul  5 12:48:42 2014 david vallee
+// Last update Sun Jul  6 06:34:41 2014 david vallee
 */
 
 #include "Skybox.hpp"
@@ -27,11 +27,10 @@ bool		Skybox::initialize()
   _geometry.pushVertex(glm::vec3(1, 1, 1));
   _geometry.pushVertex(glm::vec3(0, 1, 1));
   _geometry.pushVertex(glm::vec3(0, 0, 1));
-
-  _geometry.pushUv(glm::vec2(0.0f, 2.0f / 3.0f));
-  _geometry.pushUv(glm::vec2(0.0f, 1.0f / 3.0f));
-  _geometry.pushUv(glm::vec2(0.25f, 1.0f / 3.0f));
-  _geometry.pushUv(glm::vec2(0.25f, 2.0f / 3.0f));
+  _geometry.pushUv(glm::vec2(0.001f, 2.0f / 3.0f - 0.001f));
+  _geometry.pushUv(glm::vec2(0.001f, 1.0f / 3.0f + 0.001f));
+  _geometry.pushUv(glm::vec2(0.25f, 1.0f / 3.0f + 0.001f));
+  _geometry.pushUv(glm::vec2(0.25f, 2.0f / 3.0f - 0.001f));
 
   // ?
   _geometry.setColor(glm::vec4(1, 1, 1, 1));
@@ -39,10 +38,10 @@ bool		Skybox::initialize()
   _geometry.pushVertex(glm::vec3(1, 1, 0));
   _geometry.pushVertex(glm::vec3(0, 1, 0));
   _geometry.pushVertex(glm::vec3(0, 0, 0));
-  _geometry.pushUv(glm::vec2(0.75f, 2.0f / 3.0f));
-  _geometry.pushUv(glm::vec2(0.75f, 1.0f / 3.0f));
-  _geometry.pushUv(glm::vec2(0.5f, 1.0f / 3.0f));
-  _geometry.pushUv(glm::vec2(0.5f, 2.0f / 3.0f));
+  _geometry.pushUv(glm::vec2(0.75f, 2.0f / 3.0f - 0.001f));
+  _geometry.pushUv(glm::vec2(0.75f, 1.0f / 3.0f + 0.001f));
+  _geometry.pushUv(glm::vec2(0.5f, 1.0f / 3.0f + 0.001f));
+  _geometry.pushUv(glm::vec2(0.5f, 2.0f / 3.0f - 0.001f));
 
   // ?
   _geometry.setColor(glm::vec4(1, 1, 1, 1));
@@ -50,10 +49,10 @@ bool		Skybox::initialize()
   _geometry.pushVertex(glm::vec3(1, 1, 0));
   _geometry.pushVertex(glm::vec3(1, 1, 1));
   _geometry.pushVertex(glm::vec3(1, 0, 1));
-  _geometry.pushUv(glm::vec2(0.75f, 2.0f / 3.0f));
-  _geometry.pushUv(glm::vec2(0.75f, 1.0f / 3.0f));
-  _geometry.pushUv(glm::vec2(1.0f, 1.0f / 3.0f));
-  _geometry.pushUv(glm::vec2(1.0f, 2.0f / 3.0f));
+  _geometry.pushUv(glm::vec2(0.75f, 2.0f / 3.0f - 0.001f));
+  _geometry.pushUv(glm::vec2(0.75f, 1.0f / 3.0f + 0.001f));
+  _geometry.pushUv(glm::vec2(0.999f, 1.0f / 3.0f + 0.001f));
+  _geometry.pushUv(glm::vec2(0.999f, 2.0f / 3.0f - 0.001f));
 
   // ?
   _geometry.setColor(glm::vec4(1, 1, 1, 1));
@@ -61,10 +60,10 @@ bool		Skybox::initialize()
   _geometry.pushVertex(glm::vec3(0, 1, 1));
   _geometry.pushVertex(glm::vec3(0, 1, 0));
   _geometry.pushVertex(glm::vec3(0, 0, 0));
-  _geometry.pushUv(glm::vec2(0.25f, 2.0f / 3.0f));
-  _geometry.pushUv(glm::vec2(0.25f, 1.0f / 3.0f));
-  _geometry.pushUv(glm::vec2(0.50f, 1.0f / 3.0f));
-  _geometry.pushUv(glm::vec2(0.50f, 2.0f / 3.0f));
+  _geometry.pushUv(glm::vec2(0.25f, 2.0f / 3.0f - 0.001f));
+  _geometry.pushUv(glm::vec2(0.25f, 1.0f / 3.0f + 0.001f));
+  _geometry.pushUv(glm::vec2(0.50f, 1.0f / 3.0f + 0.001f));
+  _geometry.pushUv(glm::vec2(0.50f, 2.0f / 3.0f - 0.001f));
 
 
   // UP
@@ -73,10 +72,10 @@ bool		Skybox::initialize()
   _geometry.pushVertex(glm::vec3(1.0f, 1.0f, 0));
   _geometry.pushVertex(glm::vec3(0, 1.0f, 0));
   _geometry.pushVertex(glm::vec3(0, 1.0f, 1.0f));
-  _geometry.pushUv(glm::vec2(0.25f, 0.0f));
-  _geometry.pushUv(glm::vec2(0.50f, 0.0f));
-  _geometry.pushUv(glm::vec2(0.50f, 1.0f / 3.0f));
-  _geometry.pushUv(glm::vec2(0.25f, 1.0f / 3.0f));
+  _geometry.pushUv(glm::vec2(0.251f, 0.001f));
+  _geometry.pushUv(glm::vec2(0.499f, 0.001f));
+  _geometry.pushUv(glm::vec2(0.499f, 1.0f / 3.0f - 0.001f));
+  _geometry.pushUv(glm::vec2(0.251f, 1.0f / 3.0f - 0.001f));
 
   // DOWN
   _geometry.setColor(glm::vec4(1, 1, 1, 1));
@@ -84,12 +83,10 @@ bool		Skybox::initialize()
   _geometry.pushVertex(glm::vec3(1.0f, 0, 1.0f));
   _geometry.pushVertex(glm::vec3(0, 0, 1.0f));
   _geometry.pushVertex(glm::vec3(0, 0, 0));
-
-
-  _geometry.pushUv(glm::vec2(0.5f, 1.0f));
-  _geometry.pushUv(glm::vec2(0.25f, 1.0f));
-  _geometry.pushUv(glm::vec2(0.25f, 2.0f / 3.0f));
-  _geometry.pushUv(glm::vec2(0.5f, 2.0f / 3.0f));
+  _geometry.pushUv(glm::vec2(0.499f, 0.999f));
+  _geometry.pushUv(glm::vec2(0.251f, 0.999f));
+  _geometry.pushUv(glm::vec2(0.251f, 2.0f / 3.0f));
+  _geometry.pushUv(glm::vec2(0.499f, 2.0f / 3.0f));
 
   _geometry.build();
   return (true);

@@ -1,6 +1,7 @@
 ground:texture/grass.tga
-stone:texture/stone.tga
-dale:texture/dale.tga
-caisse:texture/pikachu.tga
+ground1:texture/stone.tga
+ground2:texture/desert.tga
+ground3:texture/snow.tga
+pika:texture/pikachu.tga
 sky:texture/sky.tga
 obj:texture/magicStone.tga

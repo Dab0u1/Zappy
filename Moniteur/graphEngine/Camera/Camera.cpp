@@ -5,7 +5,7 @@
 ** Login   <vallee_c@pc-vallee_c>
 ** 
 ** Started on  Wed May  7 07:49:20 2014 david vallee
-// Last update Fri Jul  4 20:32:48 2014 david vallee
+// Last update Sun Jul  6 09:49:01 2014 david vallee
 */
 
 #include "Camera.hpp"
@@ -14,7 +14,7 @@
 
 Camera::Camera()
 {
-  _position = glm::vec3(10, 5, 10);
+  _position = glm::vec3(10, 5, -5);
 }
 
 Camera::Camera(float x, float y, float z)
@@ -29,7 +29,7 @@ bool		Camera::initialize(float _winX, float _winY)
   _speed = 20.0f;
   anglX = 1.0;
   anglY = 0;
-  projection = glm::perspective(60.0f, winX / winY, 0.1f, 100.0f);
+  projection = glm::perspective(60.0f, winX / winY, 0.1f, 1000.0f);
   return (true);
 }
 
