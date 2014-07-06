@@ -6,8 +6,7 @@ COMPILATION:
 
 1) On tape cette petite commande:
 
-git submodule init
-git submodule update
+git submodule init && git submodule update
 
 2) On execute addlib.sh --> detar la lib dans le bon chemin
 
