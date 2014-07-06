@@ -5,7 +5,7 @@
 ** Login   <gonon_c@epitech.net>
 ** 
 ** Started on  Sun Jul  6 13:47:07 2014 gonon_c
-** Last update Sun Jul  6 13:56:02 2014 gonon_c
+// Last update Sun Jul  6 15:38:55 2014 david vallee
 */
 
 #ifndef SERVEUR_H_
@@ -20,6 +20,7 @@
 # include <stdio.h>
 # include <string.h>
 # include "world.h"
+# include "team.h"
 
 # define MAX_CLIENT 255
 # define FREE 1
@@ -58,12 +59,6 @@ typedef struct		s_serveur
   int			fd;  
   int			fdMonitor; // changer par list chainée 
 }			t_serveur;
-
-typedef struct          s_team
-{
-  char                  *data;
-  struct s_team         *next;
-}                       t_team;
 
 typedef struct		s_option
 {

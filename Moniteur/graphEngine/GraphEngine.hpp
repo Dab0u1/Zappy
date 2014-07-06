@@ -5,7 +5,7 @@
 // Login   <vallee_c@pc-vallee_c>
 // 
 // Started on  Thu Jul  3 14:31:22 2014 david vallee
-// Last update Sun Jul  6 05:31:29 2014 david vallee
+// Last update Sun Jul  6 13:49:19 2014 david vallee
 //
 
 #ifndef GRAPHENGINE_HPP_
@@ -34,7 +34,8 @@ private:
   Ground		*ground;
   Skybox		skybox;
   Billboard		test;
-  Object		obj;
+
+  Object		**obj;
 
 public:
 

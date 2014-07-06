@@ -5,11 +5,13 @@
 // Login   <vallee_c@pc-vallee_c>
 // 
 // Started on  Sat Jul  5 17:53:13 2014 david vallee
-// Last update Sat Jul  5 19:56:14 2014 david vallee
+// Last update Sun Jul  6 15:40:12 2014 david vallee
 //
 
 #ifndef WORLD_H_
 # define WORLD_H_
+
+# include "team.h"
 
 typedef struct		s_cell
 {
@@ -21,7 +23,7 @@ typedef struct		s_World
 {
   int			sizeX;
   int			sizeY;
-  int			team;
+  t_team		*team;
   int			t;
   t_cell		**map;
 }			t_world;

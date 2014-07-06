@@ -5,7 +5,7 @@
 ## Login   <vallee_c@epitech.net>
 ## 
 ## Started on  Fri Mar 28 17:01:44 2014 david vallee
-## Last update Sat Jul  5 20:51:40 2014 david vallee
+## Last update Sun Jul  6 16:07:38 2014 david vallee
 ##
 
 CXX	= g++
@@ -36,6 +36,8 @@ all	: $(NAME) $(NAME_EXE)
 
 $(NAME)	: $(OBJ)
 	  $(CXX) -o $(NAME) $(OBJ) -L ~/LibBomberman_linux_x64/libs/ -lgdl_gl -lGL -lGLEW -lrt -lfbxsdk -lSDL2 -lpthread -ldl
+	  mv $(NAME) ../
+
 clean	:
 	  $(RM) $(OBJ)
 

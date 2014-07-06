@@ -5,7 +5,7 @@
 ** Login   <vallee_c@epitech.net>
 ** 
 ** Started on  Fri Jul  4 16:33:01 2014 david vallee
-** Last update Fri Jul  4 16:56:59 2014 david vallee
+** Last update Sun Jul  6 15:51:24 2014 david vallee
 */
 
 #include "client.h"
@@ -29,6 +29,7 @@ int			start(t_client *client)
 
   fd = client->fd;
   run = 1;
+  msg = NULL;
   while (run)
     {
       fdReset(&fd_read, &tv, fd);
@@ -43,13 +44,16 @@ int			start(t_client *client)
 	  return (-1);
       // msg = message recuperer du serveur
       if (FD_ISSET(fd, &fd_read))
-	msg = get_msg(fd);      
-      // ici on va update le traintorien et l'ia
-      // pour l'instant j'affiche juste la commande que le serveur envoi
-      if (msg != NULL)
 	{
-	  printf("%s\n", msg);
-	  free(msg);
+	  msg = get_msg(fd);      
+	  // ici on va update le traintorien et l'ia
+	  // pour l'instant j'affiche juste la commande que le serveur envoi
+	  if (msg != NULL)
+	    {
+	      printf("%s\n", msg);
+	      free(msg);
+	      msg = NULL;
+	    }
 	}
     }
   return (0);
