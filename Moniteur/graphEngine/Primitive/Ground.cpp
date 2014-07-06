@@ -5,7 +5,7 @@
 // Login   <vallee_c@pc-vallee_c>
 // 
 // Started on  Fri Jul  4 17:55:01 2014 david vallee
-// Last update Sun Jul  6 11:05:55 2014 david vallee
+// Last update Sun Jul  6 17:48:14 2014 david vallee
 //
 
 #include "Ground.hpp"
@@ -49,11 +49,22 @@ bool	Ground::initialize()
 	  _geometry.pushVertex(glm::vec3(x * s, 0, y * s + s));
 	  _geometry.pushVertex(glm::vec3(x * s, 0, y * s));
 
+	  _geometry.setColor(glm::vec4(1, 1, 1, 1));
+	  _geometry.pushVertex(glm::vec3(x * s + s, -3, y * s));
+	  _geometry.pushVertex(glm::vec3(x * s + s, -3, y * s + s));
+	  _geometry.pushVertex(glm::vec3(x * s, -3, y * s + s));
+	  _geometry.pushVertex(glm::vec3(x * s, -3, y * s));
+
 	  if (y == 1)
 	    {
 	      if (x == 1)
 		{
 		  // border down left
+		  _geometry.pushUv(glm::vec2(0.67f, 1.0f));
+		  _geometry.pushUv(glm::vec2(0.67f, 1.0f - 0.16f));
+		  _geometry.pushUv(glm::vec2(0.99f, 1.0f - 0.16f));
+		  _geometry.pushUv(glm::vec2(0.99f, 1.0f));
+
 		  _geometry.pushUv(glm::vec2(0.67f, 1.0f));
 		  _geometry.pushUv(glm::vec2(0.67f, 1.0f - 0.16f));
 		  _geometry.pushUv(glm::vec2(0.99f, 1.0f - 0.16f));
@@ -66,10 +77,20 @@ bool	Ground::initialize()
 		  _geometry.pushUv(glm::vec2(0.0f, 1.0f - 0.16f));
 		  _geometry.pushUv(glm::vec2(0.32f, 1.0f - 0.16f));
 		  _geometry.pushUv(glm::vec2(0.32f, 1.0f));
+		  
+		  _geometry.pushUv(glm::vec2(0.0f, 1.0f));
+		  _geometry.pushUv(glm::vec2(0.0f, 1.0f - 0.16f));
+		  _geometry.pushUv(glm::vec2(0.32f, 1.0f - 0.16f));
+		  _geometry.pushUv(glm::vec2(0.32f, 1.0f));
 		}
 	      else
 		{
 		  // border down mid
+		  _geometry.pushUv(glm::vec2(0.333f, 1.0f));
+		  _geometry.pushUv(glm::vec2(0.333f, 1.0f - 0.16f));
+		  _geometry.pushUv(glm::vec2(0.666f, 1.0f - 0.16f));
+		  _geometry.pushUv(glm::vec2(0.666f, 1.0f));
+
 		  _geometry.pushUv(glm::vec2(0.333f, 1.0f));
 		  _geometry.pushUv(glm::vec2(0.333f, 1.0f - 0.16f));
 		  _geometry.pushUv(glm::vec2(0.666f, 1.0f - 0.16f));
@@ -98,10 +119,20 @@ bool	Ground::initialize()
 	      _geometry.pushUv(glm::vec2(0.001f, 1.0f - 0.32f));
 	      _geometry.pushUv(glm::vec2(0.32f, 1.0f - 0.32f));
 	      _geometry.pushUv(glm::vec2(0.32f, 1.0f - 0.16f));
+
+	      _geometry.pushUv(glm::vec2(0.001f, 1.0f - 0.16f));
+	      _geometry.pushUv(glm::vec2(0.001f, 1.0f - 0.32f));
+	      _geometry.pushUv(glm::vec2(0.32f, 1.0f - 0.32f));
+	      _geometry.pushUv(glm::vec2(0.32f, 1.0f - 0.16f));
 	    }
 	  else if (x == 1 && y != 1 && y != size_y)
 	    { 
 	      // border right mid
+	      _geometry.pushUv(glm::vec2(0.67f, 1.0f - 0.16f));
+	      _geometry.pushUv(glm::vec2(0.67f, 1.0f - 0.32f));
+	      _geometry.pushUv(glm::vec2(0.99f, 1.0f - 0.32f));
+	      _geometry.pushUv(glm::vec2(0.99f, 1.0f - 0.16f));
+
 	      _geometry.pushUv(glm::vec2(0.67f, 1.0f - 0.16f));
 	      _geometry.pushUv(glm::vec2(0.67f, 1.0f - 0.32f));
 	      _geometry.pushUv(glm::vec2(0.99f, 1.0f - 0.32f));
@@ -116,6 +147,11 @@ bool	Ground::initialize()
 		  _geometry.pushUv(glm::vec2(0.32f, 1.0f - 0.001f));
 		  _geometry.pushUv(glm::vec2(0.001f, 1.0f - 0.001f));
 		  _geometry.pushUv(glm::vec2(0.001f, 1.0f - 0.21f));
+
+		  _geometry.pushUv(glm::vec2(0.32f, 1.0f - 0.21f));
+		  _geometry.pushUv(glm::vec2(0.32f, 1.0f - 0.001f));
+		  _geometry.pushUv(glm::vec2(0.001f, 1.0f - 0.001f));
+		  _geometry.pushUv(glm::vec2(0.001f, 1.0f - 0.21f));
 		}
 	      else if (x == size_x)
 		{
@@ -124,10 +160,20 @@ bool	Ground::initialize()
 		  _geometry.pushUv(glm::vec2(0.99f, 1.0f - 0.0f));
 		  _geometry.pushUv(glm::vec2(0.67f, 1.0f - 0.0f));
 		  _geometry.pushUv(glm::vec2(0.67f, 1.0f - 0.16f));
+
+		  _geometry.pushUv(glm::vec2(0.99f, 1.0f - 0.16f));
+		  _geometry.pushUv(glm::vec2(0.99f, 1.0f - 0.0f));
+		  _geometry.pushUv(glm::vec2(0.67f, 1.0f - 0.0f));
+		  _geometry.pushUv(glm::vec2(0.67f, 1.0f - 0.16f));
 		}
 	      else
 		{
 		  //border up mid
+		  _geometry.pushUv(glm::vec2(0.63f, 1.0f - 0.16f));
+		  _geometry.pushUv(glm::vec2(0.63f, 1.0f - 0.0f));
+		  _geometry.pushUv(glm::vec2(0.34f, 1.0f - 0.0f));
+		  _geometry.pushUv(glm::vec2(0.34f, 1.0f - 0.16f));
+
 		  _geometry.pushUv(glm::vec2(0.63f, 1.0f - 0.16f));
 		  _geometry.pushUv(glm::vec2(0.63f, 1.0f - 0.0f));
 		  _geometry.pushUv(glm::vec2(0.34f, 1.0f - 0.0f));
@@ -152,6 +198,11 @@ bool	Ground::initialize()
 	  else
 	    {
 	      //center
+	      _geometry.pushUv(glm::vec2(0.34f, 1.0f - 0.21f));
+	      _geometry.pushUv(glm::vec2(0.34f, 1.0f - 0.39f));
+	      _geometry.pushUv(glm::vec2(0.65f, 1.0f - 0.39f));
+	      _geometry.pushUv(glm::vec2(0.65f, 1.0f - 0.21f));
+
 	      _geometry.pushUv(glm::vec2(0.34f, 1.0f - 0.21f));
 	      _geometry.pushUv(glm::vec2(0.34f, 1.0f - 0.39f));
 	      _geometry.pushUv(glm::vec2(0.65f, 1.0f - 0.39f));

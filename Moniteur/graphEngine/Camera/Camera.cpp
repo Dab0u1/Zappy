@@ -5,7 +5,7 @@
 ** Login   <vallee_c@pc-vallee_c>
 ** 
 ** Started on  Wed May  7 07:49:20 2014 david vallee
-// Last update Sun Jul  6 09:49:01 2014 david vallee
+// Last update Sun Jul  6 18:30:30 2014 david vallee
 */
 
 #include "Camera.hpp"
@@ -17,9 +17,11 @@ Camera::Camera()
   _position = glm::vec3(10, 5, -5);
 }
 
-Camera::Camera(float x, float y, float z)
+Camera::Camera(float x, float y, float z, int sizeX, int sizeY)
 {
   _position = glm::vec3(x, y, z);
+  mapX = sizeX;
+  mapY = sizeY;
 }
 
 bool		Camera::initialize(float _winX, float _winY)
@@ -95,8 +97,15 @@ void		Camera::Update(gdl::BasicShader &_shader,
     anglY += 0.05;
   if (input.getKey(SDLK_s) && anglY > -2)
     anglY -= 0.05;
+
+  if (input.getKey(SDLK_a))
+    translate(glm::vec3(0, 1, 0) * static_cast<float>(clock.getElapsed()) * _speed);
+  if (input.getKey(SDLK_e))
+    translate(glm::vec3(0, -1, 0) * static_cast<float>(clock.getElapsed()) * _speed);
  
-  if (_position.y < 0.2)
+  if (_position.y < 0.2f && _position.y > -3.2f &&
+      _position.x - 2.0f < mapX && _position.x > -0.2 &&
+      _position.z - 2.0f < mapY && _position.z > -0.2)
     _position = lastPos;
   transformation = glm::lookAt(glm::vec3(_position.x, _position.y, _position.z),
 			       glm::vec3(_position.x + 1 * cos(anglX),

@@ -5,12 +5,14 @@
 // Login   <vallee_c@pc-vallee_c>
 // 
 // Started on  Thu Jul  3 14:46:58 2014 david vallee
-// Last update Sun Jul  6 05:32:04 2014 david vallee
+// Last update Sun Jul  6 19:57:01 2014 david vallee
 //
 
 #include "../graphEngine/GraphEngine.hpp"
 #include "World.hpp"
 #include "../network/network.h"
+#include "printfColor.h"
+#include "option.h"
 
 void	intro()
 {
@@ -22,26 +24,27 @@ void	intro()
 
 int	main(int ac, char ** av)
 {
+  t_option	option;
   World		world;
   int		loading;
   int		fd;
 
-  if (ac != 3)
-    {
-      printf("Usage : ./moniteur <ip> <port>");
-      return (0);
-    }
-  fd = connect_to_server(av[1], atoi(av[2]));
+  clrscr();
+  default_value(&option);
+  exec_opt(&option, ac, av);
+  fd = connect_to_server(option.ip, option.port);
   if (fd == -1)
     {
       printf("Fail to connect to server\n");
       return (0);
     }
   world.setFdServer(fd);
-  printf("  Connect to server %s with port : %s\n\n", av[1], av[2]);
+  color(GREEN);
+  printf("\n\nConnect to server %s with port : %s\n\n", av[1], av[2]);
+  color(WHITE);
   load(world);
 
-  graphEngine	window(world);
+  graphEngine	window(world, option.x, option.y, option.fullscreen);
   window.init();
   while (window.getKey())
     window.draw();

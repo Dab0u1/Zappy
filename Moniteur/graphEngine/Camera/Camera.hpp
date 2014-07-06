@@ -5,7 +5,7 @@
 ** Login   <vallee_c@pc-vallee_c>
 ** 
 ** Started on  Wed May  7 07:49:05 2014 david vallee
-// Last update Fri Jul  4 18:47:02 2014 david vallee
+// Last update Sun Jul  6 17:18:34 2014 david vallee
 */
 
 #ifndef CAMERA_HPP_
@@ -26,13 +26,15 @@ private:
   float		anglY;
   float		winX;
   float		winY;
+  int		mapX;
+  int		mapY;
 
   glm::vec3	_lookat;
   glm::vec3	_pos;
 
 public:
   Camera();
-  Camera(float x, float y, float z);
+  Camera(float x, float y, float z, int, int);
   ~Camera() {}
 
   bool		initialize(float, float);

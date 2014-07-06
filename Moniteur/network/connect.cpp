@@ -5,7 +5,7 @@
 ** Login   <vallee_c@pc-vallee_c>
 ** 
 ** Started on  Thu Jul  3 16:53:38 2014 david vallee
-** Last update Fri Jul  4 17:03:13 2014 david vallee
+// Last update Sun Jul  6 19:11:11 2014 david vallee
 */
 
 #include "network.h"
@@ -16,6 +16,7 @@ int	connect_to_server(char *ip, int port)
   int			fd;
   struct sockaddr_in	s_in;
 
+  color(RED);
   if (!(pe = getprotobyname("TCP")))
     {
       printf("connect_to_server : getprotobyname fail\n");

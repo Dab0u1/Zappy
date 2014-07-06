@@ -5,7 +5,7 @@
 // Login   <vallee_c@pc-vallee_c>
 // 
 // Started on  Sat Jul  5 19:00:11 2014 david vallee
-// Last update Sun Jul  6 05:58:38 2014 david vallee
+// Last update Sun Jul  6 19:19:54 2014 david vallee
 //
 
 #include <cstring>
@@ -22,7 +22,6 @@ int	get_msz(std::string str, int *x, int *y)
   std::string	sizey;
 
   pos = str.find(" ", 4);
-  std::cout << "espace : " << pos << std::endl;
   sizex = str.substr(4, pos);
   sizey = str.substr(pos);
   std::stringstream ss(sizex);
@@ -42,9 +41,9 @@ int	execLoadingCmd(std::string cmd, World &world)
       a = 0;
       b = 0;
       get_msz(cmd, &a, &b);
-      std::cout << "test : " <<  a << " " << b << std::endl;
       world.setSizeX(a);
       world.setSizeY(b);
+      std::cout << "Mapsize X: " << a << ", Y: " << b << std::endl;
       return (0);
     }
   return (1);
@@ -74,7 +73,6 @@ int	load(World &world)
       if (FD_ISSET(fd, &fd_read))
 	{
 	  cmd = get_msg(fd);
-	  std::cout << "lol :" << cmd << std::endl;
 	  if (execLoadingCmd(cmd, world) == 0)
 	    loading = 0;
 	}

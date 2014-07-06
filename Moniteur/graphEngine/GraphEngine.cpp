@@ -5,7 +5,7 @@
 // Login   <vallee_c@pc-vallee_c>
 // 
 // Started on  Thu Jul  3 14:37:59 2014 david vallee
-// Last update Sun Jul  6 15:46:01 2014 david vallee
+// Last update Sun Jul  6 18:40:29 2014 david vallee
 //
 
 #include "GraphEngine.hpp"
@@ -13,17 +13,12 @@
 #define WINX 1200
 #define WINY 800
 
-graphEngine::graphEngine() : test(10, 0.5, 10, 1, 3, 20, 20),
-			     skybox(0, 0, 0, 100)
-{
-}
-
-graphEngine::graphEngine(World &world) : test(10, 0.5, 10, 1, 3, world.getSizeX(), world.getSizeY()),
-			     skybox(0, 0, 0, 500)
+graphEngine::graphEngine(World &world, int resX, int resY, bool fullscreen) : camera(10.0, 5.0, -5.0, world.getSizeX(), world.getSizeY()),
+					 test(10, 0.5, 10, 1, 3, world.getSizeX(), world.getSizeY()),
+					 skybox(0, 0, 0, 500)
 {
   std::cout << world.getSizeX() << " " << world.getSizeY() << std::endl;
   ground = new Ground(0, 0, 0, world.getSizeX(), world.getSizeY());
-
   obj = new Object*[8];
   obj[0] = new Object(5, 0.5, 8, 1, 1);
   obj[1] = new Object(6, 0.5, 8, 1, 4);
@@ -33,6 +28,9 @@ graphEngine::graphEngine(World &world) : test(10, 0.5, 10, 1, 3, world.getSizeX(
   obj[5] = new Object(10, 0.5, 8, 0.3, 4);
   obj[6] = new Object(11, 0.5, 8, 0.1, 4);
   obj[7] = new Object(12, 0.5, 8, 1, 1);  
+  _resX = resX;
+  _resY = resY;
+  _fullscreen = fullscreen;
 }
 
 graphEngine::~graphEngine()
@@ -42,8 +40,12 @@ graphEngine::~graphEngine()
 
 int	graphEngine::init()
 {
-  if (!_context.start(WINX, WINY, "Moniteur Graphique Zappy Epitech", SDL_INIT_VIDEO,
-  		      SDL_WINDOW_OPENGL))
+  int	windowsFlags = SDL_WINDOW_OPENGL;
+
+  if (_fullscreen)
+    windowsFlags |= SDL_WINDOW_FULLSCREEN;
+  if (!_context.start(_resX, _resY, "Moniteur Graphique Zappy Epitech", SDL_INIT_VIDEO,
+  		      windowsFlags))
     return (-1);
   glDisable(GL_DEPTH_TEST);
   glAlphaFunc(GL_GREATER, 0.1f);

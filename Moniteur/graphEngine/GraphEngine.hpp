@@ -5,7 +5,7 @@
 // Login   <vallee_c@pc-vallee_c>
 // 
 // Started on  Thu Jul  3 14:31:22 2014 david vallee
-// Last update Sun Jul  6 13:49:19 2014 david vallee
+// Last update Sun Jul  6 18:37:35 2014 david vallee
 //
 
 #ifndef GRAPHENGINE_HPP_
@@ -29,18 +29,19 @@ private:
   gdl::Input		_input;
   gdl::BasicShader	_shader;
 
+  int			_resX;
+  int			_resY;
+  bool			_fullscreen;
+
   TextureManager	texManager;
   Camera		camera;
   Ground		*ground;
   Skybox		skybox;
   Billboard		test;
-
   Object		**obj;
 
 public:
-
-  graphEngine();
-  graphEngine(World &);
+  graphEngine(World &, int, int, bool);
   ~graphEngine();
   int		init();
   int		getKey();

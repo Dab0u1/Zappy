@@ -1,0 +1,24 @@
+********* Liste des options ***********
+
+Client :
+
+-h : ip
+-p : port
+-n : nom de la team
+
+Serveur :
+
+-p : port
+-x : MapSizeX
+-y : MapSizeY
+-n : nom des equipes
+-c : nombre de client par equipe
+-t : delai temporel
+
+Moniteur :
+
+-h : ip
+-p : port
+-x : Resolution X
+-y : Resolution Y
+-f : Active le fullscreen

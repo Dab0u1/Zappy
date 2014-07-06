@@ -5,7 +5,7 @@
 ** Login   <vallee_c@pc-vallee_c>
 ** 
 ** Started on  Fri Jul  4 14:27:30 2014 david vallee
-** Last update Sun Jul  6 15:09:11 2014 gonon_c
+** Last update Sun Jul  6 16:49:54 2014 david vallee
 */
 
 #include "serveur.h"
@@ -77,6 +77,8 @@ int		get_option(t_option *option, int ac, char **av)
   option->maxClientbyTeam = 5;
   option->t = 100;
   exec_opt(option, ac, av);
+  if (option->team == NULL)
+    push_team(&option->team, "default");
   return (0);
 }
 

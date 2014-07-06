@@ -1,19 +1,26 @@
-//
-// client.h for client in /home/vallee_c/Zappy/Client
-// 
-// Made by david vallee
-// Login   <vallee_c@pc-vallee_c>
-// 
-// Started on  Fri Jul  4 16:31:36 2014 david vallee
-// Last update Fri Jul  4 17:04:18 2014 david vallee
-//
+/*
+** client.h for ZAP in /home/gonon_c/rendu/Zappy/Client
+** 
+** Made by gonon_c
+** Login   <gonon_c@epitech.net>
+** 
+** Started on  Sun Jul  6 17:16:15 2014 gonon_c
+** Last update Sun Jul  6 18:22:53 2014 gonon_c
+*/
 
 #ifndef CLIENT_H_
 # define CLIENT_H_
 
 #include "network/network.h"
 
-typedef struct s_client
+typedef struct	s_option
+{
+  char		*ip;
+  int		port;
+  char		*nomEquipe;
+}		t_option;
+
+typedef struct	s_client
 {
   int		fd;
   char		*nomEquipe;
@@ -21,5 +28,8 @@ typedef struct s_client
 
 int		start(t_client *);
 int		exec_cmd(int);
+int		opt_p(t_option *option, char **av, int *j);
+int		opt_h(t_option *option, char **av, int *j);
+int		opt_n(t_option *option, char **av, int *j);
 
 #endif /* !CLIENT_H_ */
