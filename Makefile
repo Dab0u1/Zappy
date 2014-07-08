@@ -5,7 +5,7 @@
 ## Login   <vallee_c@epitech.net>
 ## 
 ## Started on  Fri Mar 28 17:01:44 2014 david vallee
-## Last update Sun Jul  6 19:41:28 2014 david vallee
+## Last update Mon Jul  7 08:20:16 2014 david vallee
 ##
 
 CC	= cc
@@ -26,9 +26,14 @@ SRC_S	= Serveur/main.c \
 	  Serveur/add_client.c \
 	  Serveur/send_msg.c \
 	  Serveur/Cmd/msz.c \
-	  Serveur/Option/option.c\
-	  Serveur/Option/team_list.c\
-	  Serveur/initGraphMontor.c
+	  Serveur/Cmd/bct.c \
+	  Serveur/Option/option.c \
+	  Serveur/Option/team_list.c \
+	  Serveur/Option/exec_option.c \
+	  Serveur/initGraphMonitor.c \
+	  Serveur/Map/GenerateMap.c \
+	  Serveur/Map/del_elem_in_map.c \
+	  Serveur/Map/MapFunct.c
 
 OBJ_C	= $(SRC_C:.c=.o)
 
@@ -58,7 +63,7 @@ fclean	: clean
 	  $(RM) moniteur
 	  cd Moniteur/; make fclean; cd ..;
 
-re	: fclean all
+re	: fclean $(NAME_C) $(NAME_S)
 	  cd Moniteur/; make re; cd ..;
 
 .PHONY	: all clean fclean re

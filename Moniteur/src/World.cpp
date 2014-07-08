@@ -5,7 +5,7 @@
 // Login   <vallee_c@pc-vallee_c>
 // 
 // Started on  Sat Jul  5 20:07:10 2014 david vallee
-// Last update Sun Jul  6 05:30:21 2014 david vallee
+// Last update Tue Jul  8 14:47:24 2014 david vallee
 //
 
 #include "World.hpp"
@@ -18,26 +18,6 @@ World::World()
 World::~World()
 {
 
-}
-
-void	World::setSizeX(int x)
-{
-  sizeX = x;
-}
-
-void	World::setSizeY(int y)
-{
-  sizeY = y;
-}
-
-int	World::getSizeX()
-{
-  return (sizeX);
-}
-
-int	World::getSizeY()
-{
-  return (sizeY);
 }
 
 void	World::setFdServer(int fd)

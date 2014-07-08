@@ -5,7 +5,7 @@
 ** Login   <vallee_c@epitech.net>
 ** 
 ** Started on  Fri Jul  4 16:33:01 2014 david vallee
-** Last update Sun Jul  6 15:51:24 2014 david vallee
+** Last update Sun Jul  6 20:37:04 2014 david vallee
 */
 
 #include "client.h"
@@ -38,7 +38,7 @@ int			start(t_client *client)
 	  printf("Select Error\n");
 	  return (-1);
 	}
-      // on lit l'entrer standard -> pour les commande de debug (exemple connaitre la position de sont drone, sont inevntaire, ect ...)
+      // on lit l'entrer standard -> pour les commande de debug (exemple connaitre la position de son drone, sont inevntaire, ect ...)
       if (FD_ISSET(0, &fd_read))
 	if (exec_cmd(fd) == -1)
 	  return (-1);

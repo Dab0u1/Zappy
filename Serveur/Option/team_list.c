@@ -5,7 +5,7 @@
 ** Login   <gonon_c@epitech.net>
 ** 
 ** Started on  Sun Jul  6 12:33:21 2014 gonon_c
-** Last update Sun Jul  6 14:27:37 2014 gonon_c
+** Last update Sun Jul  6 21:07:13 2014 david vallee
 */
 
 
@@ -50,6 +50,7 @@ int		opt_n(t_option *option, char **av, int *j)
     }
   while (av[(*j)] && av[*j][i] != '-')
     {
+      // !!!!! push team non verfier 
       push_team(&(option->team), av[(*j)]);
       (*j)++;
     }

@@ -5,7 +5,7 @@
 // Login   <vallee_c@pc-vallee_c>
 // 
 // Started on  Thu Jul  3 14:46:58 2014 david vallee
-// Last update Sun Jul  6 19:57:01 2014 david vallee
+// Last update Tue Jul  8 15:09:57 2014 david vallee
 //
 
 #include "../graphEngine/GraphEngine.hpp"
@@ -22,28 +22,36 @@ void	intro()
   printf("-----------------------------------------------------------\n\n\n");
 }
 
+int	init_world(World *world, t_option *option, int ac, char **av)
+{
+  int		fd;
+
+  default_value(option);
+  exec_opt(option, ac, av);
+  fd = connect_to_server(option->ip, option->port);
+  if (fd == -1)
+    {
+      color(RED);
+      printf("Fail to connect to server\n");
+      color(WHITE);
+      return (-1);
+    }
+  color(GREEN);
+  printf("\n\nConnect to server %s with port : %s\n\n", av[1], av[2]);
+  intro();
+  color(WHITE);
+  world->setFdServer(fd);
+  load(*world);
+  return (0);
+}
+
 int	main(int ac, char ** av)
 {
   t_option	option;
   World		world;
-  int		loading;
-  int		fd;
 
-  clrscr();
-  default_value(&option);
-  exec_opt(&option, ac, av);
-  fd = connect_to_server(option.ip, option.port);
-  if (fd == -1)
-    {
-      printf("Fail to connect to server\n");
-      return (0);
-    }
-  world.setFdServer(fd);
-  color(GREEN);
-  printf("\n\nConnect to server %s with port : %s\n\n", av[1], av[2]);
-  color(WHITE);
-  load(world);
-
+  if (init_world(&world, &option, ac, av) == -1)
+    return (0);
   graphEngine	window(world, option.x, option.y, option.fullscreen);
   window.init();
   while (window.getKey())

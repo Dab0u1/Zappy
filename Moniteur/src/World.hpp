@@ -5,17 +5,18 @@
 // Login   <vallee_c@pc-vallee_c>
 // 
 // Started on  Sat Jul  5 20:11:52 2014 david vallee
-// Last update Sun Jul  6 05:30:38 2014 david vallee
+// Last update Tue Jul  8 15:03:08 2014 david vallee
 //
 
 #ifndef WORLD_HPP_
 # define WORLD_HPP_
 
+# include "Map/Map.hpp"
+
 class	World
-{
+{  
 public:
-  int	sizeX;
-  int	sizeY;
+  Map	map;
 
 private:
   int	fdServer;
@@ -23,6 +24,8 @@ private:
 public:
   World();
   ~World();
+  int	init(int x, int y);
+  int	pushElemMap(int x, int y, int t);
   void	setSizeX(int);
   void	setSizeY(int);
   int	getSizeX();
