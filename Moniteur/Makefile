@@ -5,7 +5,7 @@
 ## Login   <vallee_c@epitech.net>
 ## 
 ## Started on  Fri Mar 28 17:01:44 2014 david vallee
-## Last update Sun Jul  6 19:50:46 2014 david vallee
+## Last update Tue Jul  8 15:13:06 2014 david vallee
 ##
 
 CXX	= g++
@@ -27,7 +27,8 @@ SRC	= graphEngine/GraphEngine.cpp \
 	  src/load.cpp \
 	  src/World.cpp \
 	  src/exec_opt.cpp \
-	  src/option.cpp
+	  src/option.cpp \
+	  src/Map/Map.cpp \
 
 OBJ	= $(SRC:.cpp=.o)
 NAME	= moniteur

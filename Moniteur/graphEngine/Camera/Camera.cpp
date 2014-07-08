@@ -5,7 +5,7 @@
 ** Login   <vallee_c@pc-vallee_c>
 ** 
 ** Started on  Wed May  7 07:49:20 2014 david vallee
-// Last update Sun Jul  6 18:30:30 2014 david vallee
+// Last update Tue Jul  8 16:08:38 2014 david vallee
 */
 
 #include "Camera.hpp"
@@ -93,9 +93,9 @@ void		Camera::Update(gdl::BasicShader &_shader,
     anglX += 0.05;
   if (input.getKey(SDLK_q))
     anglX -= 0.05;
-  if (input.getKey(SDLK_z) && anglY < 2)
+  if (input.getKey(SDLK_z) && anglY < 1.0f)
     anglY += 0.05;
-  if (input.getKey(SDLK_s) && anglY > -2)
+  if (input.getKey(SDLK_s) && anglY > -1.0f)
     anglY -= 0.05;
 
   if (input.getKey(SDLK_a))

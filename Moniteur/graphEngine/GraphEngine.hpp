@@ -5,7 +5,7 @@
 // Login   <vallee_c@pc-vallee_c>
 // 
 // Started on  Thu Jul  3 14:31:22 2014 david vallee
-// Last update Sun Jul  6 18:37:35 2014 david vallee
+// Last update Tue Jul  8 15:31:57 2014 david vallee
 //
 
 #ifndef GRAPHENGINE_HPP_
@@ -23,7 +23,7 @@
 class	graphEngine
 {
 private:
-
+  World			_world;
   gdl::SdlContext	_context;
   gdl::Clock		_clock;
   gdl::Input		_input;
@@ -38,7 +38,7 @@ private:
   Ground		*ground;
   Skybox		skybox;
   Billboard		test;
-  Object		**obj;
+  Object		*obj;
 
 public:
   graphEngine(World &, int, int, bool);

@@ -5,7 +5,7 @@
 ** Login   <gonon_c@epitech.net>
 ** 
 ** Started on  Sun Jul  6 13:47:07 2014 gonon_c
-// Last update Sun Jul  6 15:38:55 2014 david vallee
+// Last update Mon Jul  7 08:17:22 2014 david vallee
 */
 
 #ifndef SERVEUR_H_
@@ -18,6 +18,7 @@
 # include <sys/time.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <stdlib.h>
 # include <string.h>
 # include "world.h"
 # include "team.h"
@@ -70,12 +71,6 @@ typedef struct		s_option
   int			t;
 }			t_option;
 
-int			opt_p(t_option *option, char **av, int *i);
-int			opt_x(t_option *option, char **av, int *i);
-int			opt_y(t_option *option, char **av, int *i);
-int			opt_c(t_option *option, char **av, int *i);
-int			opt_t(t_option *option, char **av, int *i);
-int			opt_n(t_option *option, char **av, int *i);
 void			add_client(t_serveur *);
 int			init_serveur(t_serveur *, t_option *);
 int			init_world(t_world *, t_option *);
@@ -83,5 +78,14 @@ int			initGraphMonitor(t_world *, int);
 int			send_msg(int, char *);
 int			send_msgToAll(t_serveur *, char *);
 int			send_msgToAll_exeptOne(t_serveur *, char *, int);
+int			opt_p(t_option *option, char **av, int *i);
+int			opt_x(t_option *option, char **av, int *i);
+int			opt_y(t_option *option, char **av, int *i);
+int			opt_c(t_option *option, char **av, int *i);
+int			opt_t(t_option *option, char **av, int *i);
+int			opt_n(t_option *option, char **av, int *i);
+int			bct_all_map(int fd, t_map *map);
+int			bct(int fd, t_map *map, int x, int y);
+void			msz(int fd, int x, int y);
 
 #endif /* !SERVEUR_H_ */

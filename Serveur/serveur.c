@@ -5,7 +5,7 @@
 ** Login   <vallee_c@pc-vallee_c>
 ** 
 ** Started on  Sun Apr 20 09:26:38 2014 david vallee
-** Last update Sat Jul  5 19:59:30 2014 david vallee
+** Last update Sun Jul  6 23:49:41 2014 david vallee
 */
 
 #include "serveur.h"
@@ -62,42 +62,39 @@ int			fdReset(t_serveur *s, fd_set* fd_read, struct timeval *tv)
   return (0);
 }
 
-int			serveur(t_option *option)
+int			run(t_serveur *s, t_world *world)
 {
-  t_world		world;
-  t_serveur		s;
   fd_set		fd_read;
   int			i;
   struct timeval	tv;
 
-  init_serveur(&s, option);
-  init_world(&world, option);
-  while (s.isRuning)
+  while (s->isRuning)
     {
-      fdReset(&s, &fd_read, &tv);
-      if (select(s.fd_max + 1, &fd_read, NULL, NULL, &tv) == -1)
+      fdReset(s, &fd_read, &tv);
+      if (select(s->fd_max + 1, &fd_read, NULL, NULL, &tv) == -1)
 	{
 	  perror("Select Error\n");
 	  return (0);
 	}
-
-      // Si le Fd du serveur est set un nouveaux client se connecte
-      if (FD_ISSET(s.fd, &fd_read))
-	add_client(&s);
-
-      // On check tous les fd de client pour recevoir leur message update les trantorien
-
+      if (FD_ISSET(s->fd, &fd_read))
+	add_client(s);
       i = 0;
       while (i < MAX_CLIENT)
       	{
-      	  if (i != s.fd && FD_ISSET(i, &fd_read))
-	    read_cmd(&s, &world, i);
+      	  if (i != s->fd && FD_ISSET(i, &fd_read))
+	    read_cmd(s, world, i);
 	  ++i;
       	}
-
-      //On Update le monde (action des joueur, position, elevation ect ...)
-      //on envoi les données au client graphic
-      //update_world();
     }
+}
+
+int			serveur(t_option *option)
+{
+  t_world		world;
+  t_serveur		s;
+
+  init_serveur(&s, option);
+  init_world(&world, option);
+  run(&s, &world);
   return (0);
 }
