@@ -5,7 +5,7 @@
 // Login   <vallee_c@pc-vallee_c>
 // 
 // Started on  Thu Jul  3 17:05:02 2014 david vallee
-// Last update Fri Jul  4 16:58:55 2014 david vallee
+// Last update Tue Jul  8 20:04:54 2014 david vallee
 //
 
 #ifndef NETWORK_H_
@@ -20,6 +20,7 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <string.h>
+#include "get_next_line.h"
 
 int	connect_to_server(char *ip, int port);
 int	close_connect(int fd);

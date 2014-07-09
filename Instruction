@@ -22,3 +22,10 @@ Moniteur :
 -x : Resolution X
 -y : Resolution Y
 -f : Active le fullscreen
+
+Camera:
+
+Rotation : z,s,q,d
+Deplacement : i, k, j, l
+Monter : a
+descendre : e
