@@ -25,7 +25,7 @@ int	findcmd(char *buff)
       "avance",
       "droite",
       "gauche",
-      "voir",
+      "voir\n",
       "inventaire",
       "prend objet",
       "pose objet",
@@ -46,6 +46,8 @@ void	parsecmd(char *buff, t_serveur *s, int fd)
   int	action;
 
   action = findcmd(buff);
+  printf("commande numero %d\n", action);
   initcmd();
-  (*(ptrfunc[action]))(s, fd);
+  if (action < 13)
+    (*(ptrfunc[action]))(s, fd);
 }

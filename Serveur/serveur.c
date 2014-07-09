@@ -46,7 +46,7 @@ int	read_cmd(t_serveur *s, int fd)
   char	cmd[4096];
 
   get_cmd(s, fd, cmd);
-  parsecmd(buff, s, fd);
+  parsecmd(cmd, s, fd);
   // Ici Faire Tableau de Pointeur sur Fonction des Commande reçu par le serveur
   // utiliser char cmd[4096], t_serveur *s, int fd
   if (strncmp(cmd, "GRAPHICS", 8) == 0)
