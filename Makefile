@@ -37,7 +37,11 @@ SRC_S	= Serveur/main.c \
 	  Serveur/Map/generateMap.c \
 	  Serveur/Map/del_elem_in_map.c \
 	  Serveur/Map/mapFunct.c \
-	  Serveur/monitorList.c
+	  Serveur/monitorList.c \
+	  Serveur/parsecmd.c \
+	  Serveur/action1.c \
+	  Serveur/action2.c \
+	  Serveur/action3.c
 
 OBJ_C	= $(SRC_C:.c=.o)
 

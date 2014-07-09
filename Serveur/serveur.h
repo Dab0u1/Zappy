@@ -50,14 +50,14 @@ typedef struct		s_obj
 typedef struct		s_monitor
 {
   int			fd;
-  struct s_monitor  *next;
+  struct s_monitor	*next;
 }			t_monitor;
 
-typedef struct          s_team
+typedef struct		s_team
 {
-  char                  *data;
-  struct s_team         *next;
-}                       t_team;
+  char			*data;
+  struct s_team		*next;
+}			t_team;
 
 typedef struct		s_client
 {

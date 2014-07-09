@@ -46,6 +46,7 @@ int	read_cmd(t_serveur *s, int fd)
   char	cmd[4096];
 
   get_cmd(s, fd, cmd);
+  parsecmd(buff, s, fd);
   // Ici Faire Tableau de Pointeur sur Fonction des Commande reçu par le serveur
   // utiliser char cmd[4096], t_serveur *s, int fd
   if (strncmp(cmd, "GRAPHICS", 8) == 0)
@@ -90,8 +91,8 @@ int	read_cmd(t_serveur *s, int fd)
   /*   } */
   else
     {
-      // Si un nom de team est reçu, on init le client
       t_team *tmp = s->team;
+      // Si un nom de team est reçu, on init le client
       while (tmp)
 	{
 	  if (strncmp(cmd, tmp->data, strlen(cmd) - 1) == 0)
