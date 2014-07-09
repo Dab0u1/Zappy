@@ -5,56 +5,55 @@
 // Login   <vallee_c@pc-vallee_c>
 // 
 // Started on  Thu Jul  3 14:46:58 2014 david vallee
-// Last update Tue Jul  8 15:09:57 2014 david vallee
+// Last update Wed Jul  9 19:12:18 2014 david vallee
 //
 
-#include "../graphEngine/GraphEngine.hpp"
-#include "World.hpp"
-#include "../network/network.h"
-#include "printfColor.h"
-#include "option.h"
+#include "graphEngine/GraphEngine.hpp"
+#include "World/World.hpp"
+#include "network/network.h"
+#include "Option/option.h"
 
-void	intro()
-{
-  printf("\n\n --------------- Welcome to Trantor ! ------------\n\n");
-  printf("-> Rotate the camera with z,s,q,d \n-> Move with i,j,k,l\n");
-  printf("-> Move Pikachu with Up arrow and rotate it with Right and Left arrow\n\n\n");
-  printf("-----------------------------------------------------------\n\n\n");
-}
-
-int	init_world(World *world, t_option *option, int ac, char **av)
+int		init_world(World *world, t_option *option, int ac, char **av)
 {
   int		fd;
 
-  default_value(option);
-  exec_opt(option, ac, av);
   fd = connect_to_server(option->ip, option->port);
   if (fd == -1)
     {
-      color(RED);
       printf("Fail to connect to server\n");
-      color(WHITE);
       return (-1);
     }
-  color(GREEN);
-  printf("\n\nConnect to server %s with port : %s\n\n", av[1], av[2]);
-  intro();
-  color(WHITE);
+  printf("\nConnect to server %s with port : %d and Fd : %d\n\n", option->ip, option->port, fd);
   world->setFdServer(fd);
-  load(*world);
+  send_msg(fd, "GRAPHICS\n");
+  printf("<-GRAPHICS\n");
+  usleep(500);
+  while (world->load() == 0)
+    usleep(500);
   return (0);
 }
 
-int	main(int ac, char ** av)
+int		main(int ac, char ** av)
 {
   t_option	option;
   World		world;
 
+  default_value(&option);
+  exec_opt(&option, ac, av);
   if (init_world(&world, &option, ac, av) == -1)
     return (0);
+  usleep(1);
   graphEngine	window(world, option.x, option.y, option.fullscreen);
   window.init();
   while (window.getKey())
-    window.draw();
+    {
+      int	i;
+
+      i = 0;
+      while (i < MAX_REQUETE_BY_UPDATE && world.update() != -1)
+	  ++i;
+      window.draw();
+    }
+  close(world.getFdServer());
   return (0);
 }

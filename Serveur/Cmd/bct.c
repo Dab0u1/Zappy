@@ -5,7 +5,7 @@
 ** Login   <vallee_c@pc-vallee_c>
 ** 
 ** Started on  Mon Jul  7 07:49:06 2014 david vallee
-** Last update Mon Jul  7 10:52:09 2014 david vallee
+** Last update Wed Jul  9 21:44:11 2014 david vallee
 */
 
 #include "../serveur.h"
@@ -63,7 +63,6 @@ int		bct(int fd, t_map *map, int x, int y)
   buff[1] = '\0';
   strcat(msg, buff);
   r = send_msg(fd, msg);
-  printf("%s", msg);
   free(msg);
   return (r);
 }
@@ -84,7 +83,6 @@ int		bct_all_map(int fd, t_map *map)
 	}
       x++;
     }
-  printf("\n");
   return (0);
 }
 

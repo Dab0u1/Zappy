@@ -5,7 +5,7 @@
 ** Login   <gonon_c@epitech.net>
 ** 
 ** Started on  Sun Jul  6 13:47:07 2014 gonon_c
-// Last update Mon Jul  7 08:17:22 2014 david vallee
+// Last update Wed Jul  9 21:25:11 2014 david vallee
 */
 
 #ifndef SERVEUR_H_
@@ -20,16 +20,16 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
-# include "world.h"
-# include "team.h"
+# include "Map/map.h"
 
-# define MAX_CLIENT 255
-# define FREE 1
-# define NOFREE 0
+// Client type
 
-# define NOINIT 0
-# define INIT 1
-# define GRAPHIC 2
+# define FREE 0
+# define NOINIT 1
+# define CLIENT 2
+# define MONITEUR 3
+
+# define MAXMONITOR 10
 
 # define FOOD 0
 # define LINEMATE 1
@@ -41,24 +41,50 @@
 # define PLAYER 7
 # define EGGS 8
 
+typedef struct		s_obj
+{
+  int			type;
+  struct s_obj		*next;
+}			t_obj;
+
+typedef struct		s_monitor
+{
+  int			fd;
+  struct s_monitor  *next;
+}			t_monitor;
+
+typedef struct          s_team
+{
+  char                  *data;
+  struct s_team         *next;
+}                       t_team;
+
 typedef struct		s_client
 {
   int			id;
-  int			init;
-  char			free;
+  char			type;
+  int			x;
+  int			y;
+  int			o;
+  int			lvl;
+  int			team;
+  t_obj			*inventaire;
 }			t_client;
 
 typedef struct		s_serveur
 {
-  struct sockaddr_in	sin;
-  t_client		ctab[MAX_CLIENT]; // a changer par t_client *ctab = malloc(maxClient)
-  int			idmax; // le nombre de joueur connecter
+  t_client		*ctab;
+  t_map			*map;
+  t_monitor		*fdMonitor;
+  t_team		*team;
+  int			t;
   int			maxClient;
   int			maxClientbyTeam;
   int			isRuning;
-  int			fd_max;
-  int			fd;  
-  int			fdMonitor; // changer par list chainée 
+  int			fd_max; //le fdMax pour le select du serveur
+  int			idmax; // id max des clients
+  int			fd; // fd du serveur
+
 }			t_serveur;
 
 typedef struct		s_option
@@ -73,11 +99,12 @@ typedef struct		s_option
 
 void			add_client(t_serveur *);
 int			init_serveur(t_serveur *, t_option *);
-int			init_world(t_world *, t_option *);
-int			initGraphMonitor(t_world *, int);
+int			initGraphMonitor(t_serveur *, int);
+int			initClient(t_serveur *s, int fd, char *team);
 int			send_msg(int, char *);
 int			send_msgToAll(t_serveur *, char *);
 int			send_msgToAll_exeptOne(t_serveur *, char *, int);
+int			send_msgToAll_Monitor(t_serveur *s, char *msg);
 int			opt_p(t_option *option, char **av, int *i);
 int			opt_x(t_option *option, char **av, int *i);
 int			opt_y(t_option *option, char **av, int *i);
@@ -87,5 +114,8 @@ int			opt_n(t_option *option, char **av, int *i);
 int			bct_all_map(int fd, t_map *map);
 int			bct(int fd, t_map *map, int x, int y);
 void			msz(int fd, int x, int y);
+int			new_monitor(t_monitor **list, int fd);
+int			del_monitor(t_monitor **list, int fd);
+void			show_Monitor(t_monitor *tmp);
 
 #endif /* !SERVEUR_H_ */

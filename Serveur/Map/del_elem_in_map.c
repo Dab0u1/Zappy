@@ -5,11 +5,11 @@
 ** Login   <vallee_c@pc-vallee_c>
 ** 
 ** Started on  Sun Jul  6 23:20:56 2014 david vallee
-** Last update Sun Jul  6 23:56:23 2014 david vallee
+** Last update Wed Jul  9 17:52:16 2014 david vallee
 */
 
 #include <stdlib.h>
-#include "Map.h"
+#include "map.h"
 
 int		del_end(t_cell *tmp)
 {

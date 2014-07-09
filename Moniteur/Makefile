@@ -5,30 +5,29 @@
 ## Login   <vallee_c@epitech.net>
 ## 
 ## Started on  Fri Mar 28 17:01:44 2014 david vallee
-## Last update Tue Jul  8 15:13:06 2014 david vallee
+## Last update Wed Jul  9 00:09:20 2014 david vallee
 ##
 
 CXX	= g++
 
 RM	= rm -f
 
-SRC	= graphEngine/GraphEngine.cpp \
-	  graphEngine/Camera/Camera.cpp \
-	  graphEngine/TextureManager/TextureManager.cpp \
-	  graphEngine/Primitive/Ground.cpp \
-	  graphEngine/Primitive/Billboard.cpp \
-	  graphEngine/Primitive/Skybox.cpp \
-	  graphEngine/Primitive/Object.cpp \
-	  graphEngine/AObject.cpp \
-	  network/connect.cpp \
-	  network/get_msg.cpp \
-	  network/send_msg.cpp \
+SRC	= src/graphEngine/GraphEngine.cpp \
+	  src/graphEngine/Camera/Camera.cpp \
+	  src/graphEngine/TextureManager/TextureManager.cpp \
+	  src/graphEngine/Primitive/Ground.cpp \
+	  src/graphEngine/Primitive/Billboard.cpp \
+	  src/graphEngine/Primitive/Skybox.cpp \
+	  src/graphEngine/Primitive/Object.cpp \
+	  src/graphEngine/AObject.cpp \
+	  src/network/connect.cpp \
+	  src/network/get_msg.cpp \
+	  src/network/send_msg.cpp \
 	  src/main.cpp \
-	  src/load.cpp \
-	  src/World.cpp \
-	  src/exec_opt.cpp \
-	  src/option.cpp \
-	  src/Map/Map.cpp \
+	  src/World/World.cpp \
+	  src/Option/exec_opt.cpp \
+	  src/Option/option.cpp \
+	  src/Map/Map.cpp
 
 OBJ	= $(SRC:.cpp=.o)
 NAME	= moniteur
