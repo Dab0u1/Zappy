@@ -5,7 +5,7 @@
 ** Login   <vallee_c@pc-vallee_c>
 ** 
 ** Started on  Wed Jul  9 12:52:39 2014 david vallee
-** Last update Wed Jul  9 21:50:01 2014 david vallee
+** Last update Thu Jul 10 02:44:48 2014 gonon_c
 */
 
 #include "../serveur.h"
@@ -58,8 +58,6 @@ int	initClient(t_serveur *s, int fd, char *team)
       s->idmax++;
       s->ctab[fd].type = CLIENT;
       sprintf(msg, "%d\n", num_client);
-      send_msg(fd, msg);
-      sprintf(msg, "%d\n", s->ctab[fd].id);
       send_msg(fd, msg);
       sprintf(msg, "%d %d\n", s->map->sizeX, s->map->sizeY);
       printf("%s\n", msg);

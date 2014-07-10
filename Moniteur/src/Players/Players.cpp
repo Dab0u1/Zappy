@@ -5,7 +5,7 @@
 // Login   <vallee_c@pc-vallee_c>
 // 
 // Started on  Wed Jul  9 09:40:07 2014 david vallee
-// Last update Wed Jul  9 21:59:17 2014 david vallee
+// Last update Thu Jul 10 01:33:17 2014 david vallee
 //
 
 #include <vector>
@@ -39,4 +39,7 @@ private:
 public:
   Players();
   ~Players();
+
+  int	newPlayers(int id, );
+  int	delPlayers(int id);
 };

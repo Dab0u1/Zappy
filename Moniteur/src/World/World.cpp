@@ -5,7 +5,7 @@
 // Login   <vallee_c@pc-vallee_c>
 // 
 // Started on  Sat Jul  5 20:07:10 2014 david vallee
-// Last update Wed Jul  9 21:48:32 2014 david vallee
+// Last update Thu Jul 10 01:29:53 2014 david vallee
 //
 
 #include <sstream>
@@ -121,6 +121,10 @@ int		World::load()
       get_msz(cmd, &a, &b);
       map.init(a, b);
       return (1);
+    }
+  if (cmd.compare(0, 4, "pnw ") == 0)
+    {
+      std::cout << cmd << std::endl;
     }
   return (0);
 }

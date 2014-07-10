@@ -5,7 +5,7 @@
 ** Login   <vallee_c@epitech.net>
 ** 
 ** Started on  Fri Jul  4 16:33:01 2014 david vallee
-** Last update Wed Jul  9 12:29:41 2014 david vallee
+** Last update Thu Jul 10 02:42:17 2014 gonon_c
 */
 
 #include <unistd.h>
@@ -21,6 +21,46 @@ int			fdReset(fd_set *fd_read, struct timeval *tv, int fd)
   tv->tv_usec = 3;
 }
 
+int			step_1(t_client *client, char *msg, int fd, int *count)
+{
+  char			msg_to_send[255];
+
+  if (strcmp("BIENVENUE", msg) == 0)
+    {
+      printf("->%s\n", client->nomEquipe);
+      sprintf(msg_to_send, "%s\n", client->nomEquipe);
+      send_msg(fd, msg_to_send);
+    }
+  printf("OK_1\n");
+  *count = 1;
+  return (0);
+}
+
+int			step_2(t_client *client, char *msg, int *count)
+{
+  if (atoi(msg) >= 1)
+    *count = 2;
+  return (0);
+}
+
+int			step_3(t_client *client, char *msg, int *count)
+{
+  char			*y;
+  int			i;
+  
+  i = 0;
+  printf("%d\n", atoi(msg));
+  while (msg[i] != ' ')
+    i++;
+  i++;
+  y = &msg[i];
+  client->x = atoi(msg);
+  printf("%d\n", atoi(y));
+  client->y = atoi(y);
+  *count = 3;
+  return (0);
+}
+
 int			start(t_client *client)
 {
   fd_set		fd_read;
@@ -28,46 +68,34 @@ int			start(t_client *client)
   int			run;
   int			fd;
   char			*msg;
-  char			msg_to_send[255];
   int			mode;
+  int			count;
 
+  count = 0;
   fd = client->fd;
-  mode = fcntl(fd, F_GETFL, 0);
-  mode |= O_NONBLOCK;
-  fcntl(fd, F_SETFL, mode);
+  /* mode = fcntl(fd, F_GETFL, 0); */
+  /* mode |= O_NONBLOCK; */
+  /* fcntl(fd, F_SETFL, mode); */
   run = 1;
   msg = NULL;
   while (run)
     {
-      /* fdReset(&fd_read, &tv, fd); */
-      /* if (select(fd + 1, &fd_read, NULL, NULL, &tv) == -1) */
-      /* 	{ */
-      /* 	  printf("Select Error\n"); */
-      /* 	  return (-1); */
-      /* 	} */
-      /* // on lit l'entrer standard -> pour les commande de debug (exemple connaitre la position de son drone, sont inevntaire, ect ...) */
-      /* if (FD_ISSET(0, &fd_read)) */
-      /* 	if (exec_cmd(fd) == -1) */
-      /* 	  return (-1); */
-      /* // msg = message recuperer du serveur */
-      /* if (FD_ISSET(fd, &fd_read)) */
-      /* 	{ */
-	  msg = get_msg(fd);      
-	  // ici on va update le traintorien et l'ia
-	  // pour l'instant j'affiche juste la commande que le serveur envoi
-	  if (msg != NULL)
-	    {
-	      printf("%s\n", msg);
-	      if (strcmp("BIENVENUE", msg) == 0)
-		{
-		  printf("->%s\n", client->nomEquipe);
-		  sprintf(msg_to_send, "%s\n", client->nomEquipe);
-		  send_msg(fd, msg_to_send);
-		}
-	      free(msg);
-	      msg = NULL;
-	    }
-	/* } */
+      msg = get_msg(fd);
+      if (msg != NULL)
+	{
+	  printf("%s\n", msg);
+	  if (count == 3)
+	    if (read_cmd(fd) == -1)
+	      return (-1);
+	  if (count == 2)
+	    step_3(client, msg, &count);
+	  if (count == 1)
+	    step_2(client, msg, &count);
+	  if (count == 0)
+	    step_1(client, msg, fd, &count);
+	  free(msg);
+	  msg = NULL;
+	}
     }
   return (0);
 }
