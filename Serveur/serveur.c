@@ -12,64 +12,7 @@
 
 int		fdReset(t_serveur *s, fd_set* fd_read, struct timeval *tv)
 {
-<<<<<<< HEAD
-  int	r;
-
-  if ((r = read(fd, cmd, 4096)) == -1)
-    {
-      printf("Read prb\n");
-      return (-1);
-    }      
-  else if (r == 0)
-    {
-      printf("%d: Connection closed\n", fd);
-      close(fd);
-      s->ctab[fd].type = FREE;
-      return (0);
-    }
-  cmd[r] = '\0';
-  return (1);
-}
-
-int	read_cmd(t_serveur *s, int fd)
-{
-  int	r;
-  char	cmd[4096];
-
-  get_cmd(s, fd, cmd);
-  parsecmd(cmd, s, fd);
-  // Ici Faire Tableau de Pointeur sur Fonction des Commande reçu par le serveur
-  // utiliser char cmd[4096], t_serveur *s, int fd
-  if (get_cmd(s, fd, cmd) != 1)
-    return (0);
-  if (strncmp(cmd, "GRAPHICS", 8) == 0)
-    {
-      new_monitor(&s->fdMonitor, fd);
-      show_Monitor(s->fdMonitor);
-      s->ctab[fd].type = MONITEUR;
-      initGraphMonitor(s, fd);
-    }
-  else
-    {
-      t_team *tmp = s->team;
-      // Si un nom de team est reçu, on init le client
-      while (tmp)
-  	{
-  	  if (strncmp(cmd, tmp->data, strlen(cmd) - 1) == 0)
-  	    initClient(s, fd, tmp->data);
-  	  tmp = tmp->next;
-  	}
-    }
-
-  return (0);
-}
-
-int			fdReset(t_serveur *s, fd_set* fd_read, struct timeval *tv)
-{
-  int	i;
-=======
   int		i;
->>>>>>> 2920d620c11d80c8b27d47134b802118916f3307
 
   FD_ZERO(fd_read);
   tv->tv_sec = 3;
