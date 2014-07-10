@@ -5,7 +5,7 @@
 ** Login   <gonon_c@epitech.net>
 ** 
 ** Started on  Sun Jul  6 13:47:07 2014 gonon_c
-// Last update Wed Jul  9 21:25:11 2014 david vallee
+// Last update Thu Jul 10 00:58:08 2014 david vallee
 */
 
 #ifndef SERVEUR_H_
@@ -50,7 +50,7 @@ typedef struct		s_obj
 typedef struct		s_monitor
 {
   int			fd;
-  struct s_monitor  *next;
+  struct s_monitor	*next;
 }			t_monitor;
 
 typedef struct          s_team
