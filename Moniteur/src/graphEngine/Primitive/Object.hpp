@@ -5,7 +5,7 @@
 // Login   <vallee_c@pc-vallee_c>
 // 
 // Started on  Sat Jul  5 13:28:41 2014 david vallee
-// Last update Tue Jul  8 15:40:00 2014 david vallee
+// Last update Thu Jul 10 11:10:11 2014 david vallee
 //
 
 #ifndef OBJECT_HPP_
@@ -30,7 +30,7 @@ public:
   void			update(gdl::Clock const &clock, gdl::Input &input,
 			       glm::vec3 v2);
   virtual void		draw(gdl::AShader &, gdl::Clock const &);
-  void			draw(glm::vec3 pos, gdl::Texture *_texture, gdl::AShader &, gdl::Clock const &);
+  void			draw(glm::vec3 pos, gdl::AShader &, gdl::Clock const &);
 
 private:
   double	norme(glm::vec2 v);

@@ -5,7 +5,7 @@
 ** Login   <gonon_c@epitech.net>
 ** 
 ** Started on  Tue Jul  8 18:28:15 2014 gonon_c
-** Last update Wed Jul  9 16:59:30 2014 gonon_c
+** Last update Thu Jul 10 12:25:29 2014 gonon_c
 */
 
 #include <string.h>
@@ -15,32 +15,28 @@
 int		find_cmd(char *buf)
 {
   int		i;
-  char		opt_tab[10][15] =
+  char		opt_tab[10][16] =
     {
-      "avance",
-      "droite",
-      "gauche",
-      "inventaire",
-      "prend objet",
-      "expulse",
-      "broadcast text",
-      "incantation",
-      "fork",
-      "connect nbr",
+      "avance\n",
+      "droite\n",
+      "gauche\n",
+      "inventaire\n",
+      "prend objet\n",
+      "expulse\n",
+      "broadcast text\n",
+      "incantation\n",
+      "fork\n",
+      "connect nbr\n",
     };
   i = 0;
-  while (i < 10 && (strncmp(buf, opt_tab[i], (strlen(buf) - 1)) != 0))
+  while (i < 10 && (strncmp(buf, opt_tab[i], strlen(buf)) != 0))
     ++i;
   return (i);
 }
 
-int		print_err(int *bool)
+int		print_err()
 {
-  if (*bool == 0)
-    {
-      printf("invalid command\n");
-      *bool = 1;
-    }
+  printf("invalid command\n");
   return (0);
 }
 
@@ -55,12 +51,10 @@ int		exec_cmd(int fd, char *cmd)
       &furk, &connect_nbr
     };
   int		j;
-  int		bool;
-  
-  bool = 0;
+
   j = find_cmd(cmd);
   if (j >= 10) 
-    print_err(&bool);
+    print_err();
   else
     funct_tab[j](fd, cmd);
   return (0);

@@ -5,7 +5,7 @@
 // Login   <vallee_c@pc-vallee_c>
 // 
 // Started on  Thu Jul  3 14:46:58 2014 david vallee
-// Last update Wed Jul  9 19:12:18 2014 david vallee
+// Last update Thu Jul 10 17:33:16 2014 david vallee
 //
 
 #include "graphEngine/GraphEngine.hpp"
@@ -27,9 +27,8 @@ int		init_world(World *world, t_option *option, int ac, char **av)
   world->setFdServer(fd);
   send_msg(fd, "GRAPHICS\n");
   printf("<-GRAPHICS\n");
-  usleep(500);
   while (world->load() == 0)
-    usleep(500);
+    ;
   return (0);
 }
 
@@ -42,18 +41,18 @@ int		main(int ac, char ** av)
   exec_opt(&option, ac, av);
   if (init_world(&world, &option, ac, av) == -1)
     return (0);
-  usleep(1);
   graphEngine	window(world, option.x, option.y, option.fullscreen);
   window.init();
-  while (window.getKey())
+  int	i;
+  int	r = 1;
+  while (window.getKey() && r != -2)
     {
-      int	i;
-
       i = 0;
-      while (i < MAX_REQUETE_BY_UPDATE && world.update() != -1)
+      while (i < MAX_REQUETE_BY_UPDATE && (r = world.update()) > -1)
 	  ++i;
       window.draw();
     }
-  close(world.getFdServer());
+  if (close(world.getFdServer()) != -1)
+    std::cout << "Monitor Close safely" << std::endl;
   return (0);
 }

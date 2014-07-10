@@ -5,7 +5,7 @@
 // Login   <vallee_c@pc-vallee_c>
 // 
 // Started on  Sat Jul  5 20:07:10 2014 david vallee
-// Last update Thu Jul 10 01:29:53 2014 david vallee
+// Last update Thu Jul 10 17:28:52 2014 david vallee
 //
 
 #include <sstream>
@@ -50,7 +50,7 @@ int		World::get_msz(std::string str, int *x, int *y)
   return (0);
 }
 
-int	World::get_val(const char *str, int *i)
+int		World::get_val(const char *str, int *i)
 {
   char	buff[20];
   int	j;
@@ -92,17 +92,66 @@ int		World::push_bct(std::string bct)
   return (0);
 }
 
-int		World::push_player(std::string pnw)
+int		World::parse_pnw(std::string cmd, int *a)
 {
-  return (0);
+  std::string	s(cmd.substr(*a));
+  int		i;
+  int		res = -1;
+
+  if ((i = s.find(' ')) != std::string::npos)
+    {
+      std::string str(s.substr(0, i));
+      std::stringstream ss(str);
+      ss >> res;
+      *a = *a + i + 1;
+      return (res);
+    }
+  return (-1);    
 }
 
-int	World::execCmd(std::string cmd)
+std::string	World::parse_pnw_team(std::string cmd, int *a)
 {
+  std::string	s(cmd.substr(*a));
+  return (s);    
+}
+
+t_player	*World::getPnw(std::string cmd)
+{
+  t_player	*p;
+  int		a;
+
+  a = 5;
+  p = new t_player;
+  p->id = parse_pnw(cmd, &a);
+  p->x = parse_pnw(cmd, &a);
+  p->y = parse_pnw(cmd, &a);
+  p->o = parse_pnw(cmd, &a);
+  p->l = parse_pnw(cmd, &a);
+  p->team = parse_pnw_team(cmd, &a);
+  p->anime = 1;
+  p->time = 0;
+  std::cout << p->id << p->x << p->y << p->o << p->l << p->team << std::endl;
+  return (p);
+}
+
+int		World::getintarg(std::string str)
+{
+  std::stringstream ss(str);
+  int	i;
+  
+  ss >> i;  
+  return (i);
+}
+
+int		World::execCmd(std::string cmd)
+{
+  std::cout << cmd << std::endl;
   if (cmd.compare(0, 4, "bct ") == 0)
     push_bct(cmd);
-  else if (cmd.compare(0, 4, "pnw ") == 0)
-    std::cout << cmd << std::endl;
+  else if (cmd.compare(0, 5, "pnw #") == 0)
+    players.newPlayer(getPnw(cmd));
+  else if (cmd.compare(0, 5, "pdi #") == 0)
+    players.delPlayer(getintarg(cmd.substr(5, cmd.length())));
   return (1);
 }
 
@@ -122,10 +171,6 @@ int		World::load()
       map.init(a, b);
       return (1);
     }
-  if (cmd.compare(0, 4, "pnw ") == 0)
-    {
-      std::cout << cmd << std::endl;
-    }
   return (0);
 }
 
@@ -138,6 +183,8 @@ int		World::update()
     return (0);
   else if (r == -1)
     return (-1);
+  else if (r == -2)
+    return (-2);
   execCmd(cmd);
   return (1);
 }

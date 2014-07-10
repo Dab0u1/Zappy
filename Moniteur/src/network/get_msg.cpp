@@ -5,7 +5,7 @@
 // Login   <vallee_c@epitech.net>
 // 
 // Started on  Tue Jul  8 19:46:08 2014 david vallee
-// Last update Wed Jul  9 19:52:32 2014 david vallee
+// Last update Thu Jul 10 17:28:14 2014 david vallee
 //
 
 #include <cstring>
@@ -59,7 +59,7 @@ int		get_msg(int fd, std::string &msg)
       else if (r == 0)
 	{
 	  printf("%s\n", "Serveur shutdown");
-	  return (-1);
+	  return (-2);
 	}
       buff[r] = '\0';
     }
