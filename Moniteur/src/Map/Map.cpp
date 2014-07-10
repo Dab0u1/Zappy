@@ -5,7 +5,7 @@
 // Login   <vallee_c@pc-vallee_c>
 // 
 // Started on  Tue Jul  8 14:21:47 2014 david vallee
-// Last update Tue Jul  8 15:55:46 2014 david vallee
+// Last update Thu Jul 10 02:20:15 2014 david vallee
 //
 
 #include "Map.hpp"
@@ -139,9 +139,4 @@ int		Map::delElem(t_map *map, int x, int y, int type)
       return (del_end(tmp));
     }
   return (del_mid(tmp));
-}
-
-void	Map::draw()
-{
-
 }

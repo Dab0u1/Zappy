@@ -5,7 +5,7 @@
 ** Login   <vallee_c@pc-vallee_c>
 ** 
 ** Started on  Wed Jul  9 12:37:06 2014 david vallee
-** Last update Wed Jul  9 21:44:09 2014 david vallee
+** Last update Thu Jul 10 16:19:08 2014 david vallee
 */
 
 #include <stdio.h>
@@ -75,6 +75,19 @@ int	pnw_all_to_all_monitor(t_serveur *s)
 	    }
 	}
       ++i;
+    }
+  return (0);
+}
+
+int	pnw_to_all_monitor(t_serveur *s, int fd)
+{
+  t_monitor *tmp;
+  
+  tmp = s->fdMonitor;
+  while (tmp)
+    {
+      pnw(fd, s, tmp->fd);
+      tmp = tmp->next;
     }
   return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <gonon_c@epitech.net>
 ** 
 ** Started on  Sun Jul  6 13:47:07 2014 gonon_c
-// Last update Thu Jul 10 00:58:08 2014 david vallee
+** Last update Thu Jul 10 17:56:47 2014 gonon_c
 */
 
 #ifndef SERVEUR_H_
@@ -101,6 +101,7 @@ void			add_client(t_serveur *);
 int			init_serveur(t_serveur *, t_option *);
 int			initGraphMonitor(t_serveur *, int);
 int			initClient(t_serveur *s, int fd, char *team);
+void			initcmd(void);
 int			send_msg(int, char *);
 int			send_msgToAll(t_serveur *, char *);
 int			send_msgToAll_exeptOne(t_serveur *, char *, int);
@@ -113,9 +114,19 @@ int			opt_t(t_option *option, char **av, int *i);
 int			opt_n(t_option *option, char **av, int *i);
 int			bct_all_map(int fd, t_map *map);
 int			bct(int fd, t_map *map, int x, int y);
+int			ppo(t_serveur *s, int fd);
+
+/* int                  pex(t_option *option, int fd); */
+/* int                  plv(t_option *option, int fd); */
+/* int			sgt(t_option *option, int fd); */
+
 void			msz(int fd, int x, int y);
+int			pdi(t_serveur *s, int i);
+int			pnw_to_all_monitor(t_serveur *s, int fd);
 int			new_monitor(t_monitor **list, int fd);
 int			del_monitor(t_monitor **list, int fd);
 void			show_Monitor(t_monitor *tmp);
+int			read_cmd(t_serveur *s, int fd);
+int			exec_cmd(t_serveur *s, int fd, char *cmd);
 
 #endif /* !SERVEUR_H_ */

@@ -5,7 +5,7 @@
 // Login   <gonon_c@epitech.net>
 // 
 // Started on  Sun Jul  6 18:54:41 2014 gonon_c
-// Last update Sun Jul  6 19:54:36 2014 david vallee
+// Last update Thu Jul 10 16:25:03 2014 david vallee
 //
 
 #include <string.h>
@@ -73,7 +73,7 @@ int		default_value(t_option *option)
 {
   option->port = 4242;
   option->ip = strdup("127.0.0.1");
-  option->x = 800; 
-  option->y = 600;
+  option->x = 1100; 
+  option->y = 800;
   option->fullscreen = false;
 }

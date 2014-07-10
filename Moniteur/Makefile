@@ -5,7 +5,7 @@
 ## Login   <vallee_c@epitech.net>
 ## 
 ## Started on  Fri Mar 28 17:01:44 2014 david vallee
-## Last update Wed Jul  9 00:09:20 2014 david vallee
+## Last update Thu Jul 10 11:41:10 2014 david vallee
 ##
 
 CXX	= g++
@@ -16,7 +16,7 @@ SRC	= src/graphEngine/GraphEngine.cpp \
 	  src/graphEngine/Camera/Camera.cpp \
 	  src/graphEngine/TextureManager/TextureManager.cpp \
 	  src/graphEngine/Primitive/Ground.cpp \
-	  src/graphEngine/Primitive/Billboard.cpp \
+	  src/graphEngine/Primitive/Trantorien.cpp \
 	  src/graphEngine/Primitive/Skybox.cpp \
 	  src/graphEngine/Primitive/Object.cpp \
 	  src/graphEngine/AObject.cpp \
@@ -27,7 +27,8 @@ SRC	= src/graphEngine/GraphEngine.cpp \
 	  src/World/World.cpp \
 	  src/Option/exec_opt.cpp \
 	  src/Option/option.cpp \
-	  src/Map/Map.cpp
+	  src/Map/Map.cpp \
+	  src/Players/Players.cpp
 
 OBJ	= $(SRC:.cpp=.o)
 NAME	= moniteur

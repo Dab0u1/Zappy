@@ -5,7 +5,7 @@
 ** Login   <vallee_c@pc-vallee_c>
 ** 
 ** Started on  Fri Jul  4 14:22:42 2014 david vallee
-** Last update Wed Jul  9 20:16:52 2014 david vallee
+** Last update Thu Jul 10 15:10:53 2014 david vallee
 */
 
 #include "../serveur.h"
@@ -52,5 +52,6 @@ int		init_serveur(t_serveur *s, t_option *option)
   s->map = GenerateMap(option->worldX, option->worldY); 
   s->team = option->team;
   s->t = option->t;
+  initcmd();
   return(0);
 }
