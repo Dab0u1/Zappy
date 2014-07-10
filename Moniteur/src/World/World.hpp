@@ -5,7 +5,7 @@
 // Login   <vallee_c@pc-vallee_c>
 // 
 // Started on  Sat Jul  5 20:11:52 2014 david vallee
-// Last update Wed Jul  9 21:50:43 2014 david vallee
+// Last update Thu Jul 10 16:08:12 2014 david vallee
 //
 
 #ifndef WORLD_HPP_
@@ -13,6 +13,7 @@
 
 # include "../network/network.h"
 # include "../Map/Map.hpp"
+# include "../Players/Players.hpp"
 
 # define MAX_REQUETE_BY_UPDATE 100
 
@@ -20,10 +21,10 @@ class	World
 {  
 public:
   Map		map;
-  // Players	players;
+  Players	players;
 
 private:
-  int	fdServer;
+  int		fdServer;
 
 public:
   World();
@@ -34,11 +35,15 @@ public:
   int	update();
 
 private:
-  int	get_msz(std::string str, int *x, int *y);
-  int	get_val(const char *str, int *i);
-  int	push_bct(std::string bct);
-  int	push_player(std::string pnw);
-  int	execCmd(std::string cmd);
+  int		get_msz(std::string str, int *x, int *y);
+  int		get_val(const char *str, int *i);
+  int		push_bct(std::string bct);
+  int		push_player(std::string pnw);
+  int		execCmd(std::string cmd);
+  t_player	*getPnw(std::string cmd);
+  int	        parse_pnw(std::string cmd, int *a);
+  std::string	parse_pnw_team(std::string cmd, int *a);
+  int		getintarg(std::string str);
 };
 
 

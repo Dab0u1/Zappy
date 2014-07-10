@@ -5,7 +5,7 @@
 // Login   <vallee_c@pc-vallee_c>
 // 
 // Started on  Thu Jul  3 14:37:59 2014 david vallee
-// Last update Tue Jul  8 16:04:47 2014 david vallee
+// Last update Thu Jul 10 13:35:12 2014 david vallee
 //
 
 #include "GraphEngine.hpp"
@@ -14,14 +14,14 @@
 #define WINY 800
 
 graphEngine::graphEngine(World &world, int resX, int resY, bool fullscreen) :
-  camera(10.0, 5.0, -5.0, world.map.getSizeX(), world.map.getSizeY()),
-  test(10, 0.5, 10, 1, 3, world.map.getSizeX(), world.map.getSizeY()),
+  camera(10.0, 5.0, 30.0, world.map.getSizeX(), world.map.getSizeY()),
   skybox(0, 0, 0, 500)
 {
   _world = world;
   std::cout << world.map.getSizeX() << " " << world.map.getSizeY() << std::endl;
   ground = new Ground(0, 0, 0, world.map.getSizeX(), world.map.getSizeY());
   obj = new Object();
+  pikachu = new Trantorien();
   _resX = resX;
   _resY = resY;
   _fullscreen = fullscreen;
@@ -56,11 +56,10 @@ int	graphEngine::init()
   // Initialize
   ground->initialize();
   ground->LoadTexture(texManager.getTexture("ground"));
-  test.initialize();
-  test.LoadTexture(texManager.getTexture("pika"));
   skybox.initialize();
   skybox.LoadTexture(texManager.getTexture("sky"));
   obj->initialize();
+  pikachu->initialize();
 }
 
 int	graphEngine::getKey()
@@ -68,25 +67,20 @@ int	graphEngine::getKey()
   _context.updateClock(_clock);
   _context.updateInputs(_input);
   camera.Update(_shader, _clock, _input);
-  test.update(_clock, _input, camera.getPosition(), 0.1);
   skybox.update(_clock, _input, camera.getPosition());
   obj->update(_clock, _input, camera.getPosition());
+  pikachu->update(_clock, _input, camera.getPosition());
   if (_input.getKey(SDLK_ESCAPE) || _input.getInput(SDL_QUIT))
     return 0;
   return (1);
 }
 
-int	graphEngine::draw()
+int	graphEngine::drawMap()
 {
   gdl::Texture	*tex;
   int		x;
   int		y;
 
-  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  _shader.bind();
-  ground->draw(_shader, _clock);
-  test.draw(_shader, _clock);
-  skybox.draw(_shader, _clock);
   x = 0;
   while (x < _world.map.getSizeX())
     {
@@ -110,12 +104,40 @@ int	graphEngine::draw()
 		tex = texManager.getTexture("phiras");
 	      else if (tmp->type == 6)
 		tex = texManager.getTexture("thystame");
-	      obj->draw(glm::vec3(x + 1.5, 0.2, y + 1.5), tex, _shader, _clock);
+	      tex->bind();
+	      obj->draw(glm::vec3(x + 1.5, 0.2, y + 1.5), _shader, _clock);
 	      tmp = tmp->next;
 	    }
 	  ++y;
 	}
       ++x;
     }
-  _context.flush();
+}
+
+int	graphEngine::drawPlayers()
+{
+  gdl::Texture	*tex;
+  t_player *tmp;
+
+  tmp = _world.players.getPlayer();
+  tex = texManager.getTexture("pika");
+  while (tmp)
+    {
+      tex->bind();
+      pikachu->draw(tmp, _shader, _clock);
+      tmp = tmp->next;
+    }
+  return (0);
+}
+
+int	graphEngine::draw()
+{
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  _shader.bind();
+  ground->draw(_shader, _clock);
+  skybox.draw(_shader, _clock);
+  drawMap();
+  drawPlayers();
+ _context.flush();
+ return (0);
 }

@@ -5,14 +5,14 @@
 ** Login   <vallee_c@epitech.net>
 ** 
 ** Started on  Fri Jul  4 16:33:01 2014 david vallee
-** Last update Thu Jul 10 02:42:17 2014 gonon_c
+** Last update Thu Jul 10 17:03:29 2014 david vallee
 */
 
 #include <unistd.h>
 #include <fcntl.h>
 #include "client.h"
 
-int			fdReset(fd_set *fd_read, struct timeval *tv, int fd)
+int	fdReset(fd_set *fd_read, struct timeval *tv, int fd)
 {
   FD_ZERO(fd_read);
   FD_SET(fd, fd_read);
@@ -21,7 +21,7 @@ int			fdReset(fd_set *fd_read, struct timeval *tv, int fd)
   tv->tv_usec = 3;
 }
 
-int			step_1(t_client *client, char *msg, int fd, int *count)
+int	step_1(t_client *client, char *msg, int fd, int *count)
 {
   char			msg_to_send[255];
 
@@ -31,19 +31,18 @@ int			step_1(t_client *client, char *msg, int fd, int *count)
       sprintf(msg_to_send, "%s\n", client->nomEquipe);
       send_msg(fd, msg_to_send);
     }
-  printf("OK_1\n");
   *count = 1;
   return (0);
 }
 
-int			step_2(t_client *client, char *msg, int *count)
+int	step_2(t_client *client, char *msg, int *count)
 {
   if (atoi(msg) >= 1)
     *count = 2;
   return (0);
 }
 
-int			step_3(t_client *client, char *msg, int *count)
+int	step_3(t_client *client, char *msg, int *count)
 {
   char			*y;
   int			i;
@@ -58,6 +57,7 @@ int			step_3(t_client *client, char *msg, int *count)
   printf("%d\n", atoi(y));
   client->y = atoi(y);
   *count = 3;
+  printf("%d\n", *count);
   return (0);
 }
 
@@ -80,21 +80,33 @@ int			start(t_client *client)
   msg = NULL;
   while (run)
     {
-      msg = get_msg(fd);
-      if (msg != NULL)
+      fdReset(&fd_read, &tv, fd);
+      if (select(fd + 1, &fd_read, NULL, NULL, &tv) == -1)
+        {
+          perror("Select Error\n");
+          return (0);
+        }
+      if (FD_ISSET(0, &fd_read) && count == 3)
 	{
-	  printf("%s\n", msg);
-	  if (count == 3)
-	    if (read_cmd(fd) == -1)
-	      return (-1);
-	  if (count == 2)
-	    step_3(client, msg, &count);
-	  if (count == 1)
-	    step_2(client, msg, &count);
-	  if (count == 0)
-	    step_1(client, msg, fd, &count);
-	  free(msg);
-	  msg = NULL;
+	  printf("Je read cmd\n");
+	  if (read_cmd(fd) == -1)
+	    return (-1);
+	}
+      if (FD_ISSET(fd, &fd_read))
+	{
+	  msg = get_msg(fd);
+	  if (msg != NULL)
+	    {
+	      printf("%s <--- msg\n", msg);
+	      if (count == 2)
+		step_3(client, msg, &count);
+	      if (count == 1)
+		step_2(client, msg, &count);
+	      if (count == 0)
+		step_1(client, msg, fd, &count);
+	      free(msg);
+	      msg = NULL;
+	    }
 	}
     }
   return (0);

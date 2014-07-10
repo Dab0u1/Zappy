@@ -5,13 +5,14 @@
 ** Login   <vallee_c@pc-vallee_c>
 ** 
 ** Started on  Sun Apr 20 09:26:38 2014 david vallee
-** Last update Thu Jul 10 01:24:32 2014 david vallee
+** Last update Thu Jul 10 14:23:08 2014 david vallee
 */
 
 #include "serveur.h"
 
-int	get_cmd(t_serveur *s, int fd, char *cmd)
+int		fdReset(t_serveur *s, fd_set* fd_read, struct timeval *tv)
 {
+<<<<<<< HEAD
   int	r;
 
   if ((r = read(fd, cmd, 4096)) == -1)
@@ -66,6 +67,9 @@ int	read_cmd(t_serveur *s, int fd)
 int			fdReset(t_serveur *s, fd_set* fd_read, struct timeval *tv)
 {
   int	i;
+=======
+  int		i;
+>>>>>>> 2920d620c11d80c8b27d47134b802118916f3307
 
   FD_ZERO(fd_read);
   tv->tv_sec = 3;
@@ -109,6 +113,7 @@ int			run(t_serveur *s)
 	  ++i;
       	}
     }
+  return (0);
 }
 
 int			serveur(t_option *option)

@@ -5,7 +5,7 @@
 // Login   <vallee_c@pc-vallee_c>
 // 
 // Started on  Sat Jul  5 13:27:49 2014 david vallee
-// Last update Tue Jul  8 16:05:35 2014 david vallee
+// Last update Thu Jul 10 11:10:03 2014 david vallee
 //
 
 
@@ -57,12 +57,12 @@ void		Object::draw(gdl::AShader &shader,
 }
 
 void		Object::draw(glm::vec3 pos,
-			     gdl::Texture *_texture, gdl::AShader &shader,
+			     gdl::AShader &shader,
 			     gdl::Clock const &clock)
 {
   _position = pos;
   (void)clock;
-  _texture->bind();
+
   float		angle_z;
   angle_z  = scalaire(glm::vec2(0, 1), glm::vec2(_position.z - p.z, _position.x - p.x));
   if (_position.z <  p.z)

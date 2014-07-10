@@ -5,7 +5,7 @@
 // Login   <vallee_c@pc-vallee_c>
 // 
 // Started on  Tue Jul  8 14:19:43 2014 david vallee
-// Last update Tue Jul  8 15:48:32 2014 david vallee
+// Last update Thu Jul 10 02:20:07 2014 david vallee
 //
 
 #ifndef MAP_HPP_
@@ -24,7 +24,7 @@ typedef struct	s_map
   int		sizeX;
   int		sizeY;
   t_cell	***cell;
-}			t_map;
+}		t_map;
 
 class		Map
 {
@@ -44,7 +44,6 @@ public:
   void		showMap();
   t_cell	*get_cell(int x, int y);
   int		delElem(t_map *, int x, int y,int type);
-  void		draw();
 
 private:
   int		del_mid(t_cell *);

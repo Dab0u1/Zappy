@@ -5,7 +5,7 @@
 // Login   <vallee_c@pc-vallee_c>
 // 
 // Started on  Thu Jul  3 14:31:22 2014 david vallee
-// Last update Tue Jul  8 18:31:50 2014 david vallee
+// Last update Thu Jul 10 11:56:10 2014 david vallee
 //
 
 #ifndef GRAPHENGINE_HPP_
@@ -15,7 +15,7 @@
 # include "TextureManager/TextureManager.hpp"
 # include "Camera/Camera.hpp"
 # include "Primitive/Ground.hpp"
-# include "Primitive/Billboard.hpp"
+# include "Primitive/Trantorien.hpp"
 # include "Primitive/Skybox.hpp"
 # include "Primitive/Object.hpp"
 # include "../World/World.hpp"
@@ -23,11 +23,12 @@
 class	graphEngine
 {
 private:
-  World			_world;
   gdl::SdlContext	_context;
   gdl::Clock		_clock;
   gdl::Input		_input;
   gdl::BasicShader	_shader;
+
+  World			_world;
 
   int			_resX;
   int			_resY;
@@ -35,9 +36,9 @@ private:
 
   TextureManager	texManager;
   Camera		camera;
-  Ground		*ground;
   Skybox		skybox;
-  Billboard		test;
+  Ground		*ground;
+  Trantorien		*pikachu;
   Object		*obj;
 
 public:
@@ -46,6 +47,10 @@ public:
   int		init();
   int		getKey();
   int		draw();
+
+private:
+  int		drawMap();
+  int		drawPlayers();
 };
 
 #endif /* !GRAPHENGINE_HPP_ */

@@ -5,7 +5,7 @@
 ** Login   <vallee_c@pc-vallee_c>
 ** 
 ** Started on  Wed Jul  9 12:52:39 2014 david vallee
-** Last update Thu Jul 10 02:44:48 2014 gonon_c
+** Last update Thu Jul 10 17:22:41 2014 david vallee
 */
 
 #include "../serveur.h"
@@ -64,10 +64,11 @@ int	initClient(t_serveur *s, int fd, char *team)
       send_msg(fd, msg);
       s->ctab[fd].x = rand() % s->map->sizeX;
       s->ctab[fd].y = rand() % s->map->sizeX;
-      s->ctab[fd].o = rand() % 4;
+      s->ctab[fd].o = rand() % 4 + 1;
       s->ctab[fd].lvl = 1;
       s->ctab[fd].team = t;
       s->ctab[fd].inventaire = NULL;
+      pnw_to_all_monitor(s, fd);
     }
   return (0);
 }
