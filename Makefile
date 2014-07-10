@@ -5,7 +5,7 @@
 ## Login   <vallee_c@epitech.net>
 ## 
 ## Started on  Fri Mar 28 17:01:44 2014 david vallee
-## Last update Wed Jul  9 21:29:41 2014 david vallee
+## Last update Thu Jul 10 02:38:57 2014 gonon_c
 ##
 
 CC	= cc
@@ -15,7 +15,9 @@ RM	= rm -f
 SRC_C	= Client/main.c \
 	  Client/option.c \
 	  Client/start.c \
-	  Client/exec_cmd.c \
+	  Client/read_cmd.c \
+	  Client/cmd_1.c \
+	  Client/cmd_2.c \
 	  Client/network/connect.c \
 	  Client/network/get_msg.c \
 	  Client/network/send_msg.c \
