@@ -116,6 +116,8 @@ int			sgt(t_serveur *, int);
 void			msz(int fd, int x, int y);
 int			pdi(t_serveur *s, int i);
 void			pin(t_serveur *, int);
+t_serveur		*add_inv(t_serveur *, int, char *);
+t_serveur		*rm_inv(t_serveur *, int, char *);
 int			pnw_to_all_monitor(t_serveur *s, int fd);
 int			new_monitor(t_monitor **list, int fd);
 int			del_monitor(t_monitor **list, int fd);
@@ -124,7 +126,5 @@ int			read_cmd(t_serveur *s, int fd);
 int			exec_cmd(t_serveur *s, int fd, char *cmd);
 int			*init_inv(t_serveur *, int);
 void			show_inv(int *);
-t_serveur		*add_inventory(t_serveur *, int);
-t_serveur		*rm_inventory(t_serveur *, int, char *);
 
 #endif /* !SERVEUR_H_ */

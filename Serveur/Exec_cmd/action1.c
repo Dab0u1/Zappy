@@ -38,5 +38,6 @@ t_serveur	*cmdsee(t_serveur *s, int fd, char *buff)
 
 t_serveur	*cmdinv(t_serveur *s, int fd, char *buff)
 {
+  // Rajouter commandes affichage
   show_inv(s->ctab[fd].inv);
 }
