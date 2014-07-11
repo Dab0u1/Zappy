@@ -67,7 +67,7 @@ int	initClient(t_serveur *s, int fd, char *team)
       s->ctab[fd].o = rand() % 4 + 1;
       s->ctab[fd].lvl = 1;
       s->ctab[fd].team = t;
-      s->ctab[fd].inventaire = NULL;
+      s->ctab[fd].inv = init_inv(s, fd);
       pnw_to_all_monitor(s, fd);
     }
   return (0);

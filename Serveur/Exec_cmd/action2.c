@@ -2,6 +2,7 @@
 
 t_serveur	*cmdtake(t_serveur *s, int fd, char *buff)
 {
+  add_inventory(s, fd);
   printf("pgt #n i\n");
   printf("pin #n X Y q q q q q q q\n");
   //printf("bct X Y q q q q q q q\n");
@@ -10,6 +11,7 @@ t_serveur	*cmdtake(t_serveur *s, int fd, char *buff)
 
 t_serveur	*cmdlet(t_serveur *s, int fd, char *buff)
 {
+  rm_inventory(s, fd, buff);
   printf("pdr #n i\n");
   printf("pin #n X Y q q q q q q q\n");
   //printf("bct X Y q q q q q q q\n");

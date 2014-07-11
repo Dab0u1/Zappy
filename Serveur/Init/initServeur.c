@@ -49,7 +49,7 @@ int		init_serveur(t_serveur *s, t_option *option)
       s->ctab[i].type = FREE;
       ++i;
     }
-  s->map = GenerateMap(option->worldX, option->worldY); 
+  s->map = GenerateMap(option->worldX, option->worldY);
   s->team = option->team;
   s->t = option->t;
   initcmd();

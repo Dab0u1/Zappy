@@ -40,12 +40,7 @@
 # define THYSTAME 6
 # define PLAYER 7
 # define EGGS 8
-
-typedef struct		s_obj
-{
-  int			type;
-  struct s_obj		*next;
-}			t_obj;
+# define NBR_RES 8
 
 typedef struct		s_monitor
 {
@@ -68,7 +63,7 @@ typedef struct		s_client
   int			o;
   int			lvl;
   int			team;
-  t_obj			*inventaire;
+  int			*inv;
 }			t_client;
 
 typedef struct		s_serveur
@@ -126,5 +121,9 @@ int			del_monitor(t_monitor **list, int fd);
 void			show_Monitor(t_monitor *tmp);
 int			read_cmd(t_serveur *s, int fd);
 int			exec_cmd(t_serveur *s, int fd, char *cmd);
+int			*init_inv(t_serveur *, int);
+void			show_inv(int *);
+t_serveur		*add_inventory(t_serveur *, int);
+t_serveur		*rm_inventory(t_serveur *, int, char *);
 
 #endif /* !SERVEUR_H_ */

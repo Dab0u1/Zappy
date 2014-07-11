@@ -38,4 +38,5 @@ t_serveur	*cmdsee(t_serveur *s, int fd, char *buff)
 
 t_serveur	*cmdinv(t_serveur *s, int fd, char *buff)
 {
+  show_inv(s->ctab[fd].inv);
 }
