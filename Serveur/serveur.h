@@ -53,11 +53,11 @@ typedef struct		s_monitor
   struct s_monitor	*next;
 }			t_monitor;
 
-typedef struct          s_team
+typedef struct		s_team
 {
-  char                  *data;
-  struct s_team         *next;
-}                       t_team;
+  char			*data;
+  struct s_team		*next;
+}			t_team;
 
 typedef struct		s_client
 {
@@ -115,11 +115,9 @@ int			opt_n(t_option *option, char **av, int *i);
 int			bct_all_map(int fd, t_map *map);
 int			bct(int fd, t_map *map, int x, int y);
 int			ppo(t_serveur *s, int fd);
-
-/* int                  pex(t_option *option, int fd); */
-/* int                  plv(t_option *option, int fd); */
-/* int			sgt(t_option *option, int fd); */
-
+int			pex(t_option *option, int fd);
+int			plv(t_option *option, int fd);
+int			sgt(t_serveur *, int);
 void			msz(int fd, int x, int y);
 int			pdi(t_serveur *s, int i);
 int			pnw_to_all_monitor(t_serveur *s, int fd);

@@ -1,6 +1,6 @@
 #include "cmd.h"
 
-static t_serveur	*(*ptrfunc[NB_CMD])(t_serveur *, int);
+static t_serveur	*(*ptrfunc[NB_CMD])(t_serveur *, int, char *);
 
 static char          opt_tab[12][16] =
   {
@@ -52,5 +52,5 @@ void	parsecmd(char *buff, t_serveur *s, int fd)
   action = findcmd(buff);
   printf("commande numero %d\n", action);
   if (action < NB_CMD)
-      (*(ptrfunc[action]))(s, fd);
+    (*(ptrfunc[action]))(s, fd, buff);
 }

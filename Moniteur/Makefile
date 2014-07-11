@@ -33,12 +33,12 @@ SRC	= src/graphEngine/GraphEngine.cpp \
 OBJ	= $(SRC:.cpp=.o)
 NAME	= moniteur
 
-CXXFLAGS = -I ~/LibBomberman_linux_x64/includes/
+CXXFLAGS = -I ../lib/LibBomberman_linux_x64/includes/
 
 all	: $(NAME) $(NAME_EXE)
 
 $(NAME)	: $(OBJ)
-	  $(CXX) -o $(NAME) $(OBJ) -L ~/LibBomberman_linux_x64/libs/ -lgdl_gl -lGL -lGLEW -lrt -lfbxsdk -lSDL2 -lpthread -ldl
+	  $(CXX) -o $(NAME) $(OBJ) -L ../lib/LibBomberman_linux_x64/libs/ -lgdl_gl -lGL -lGLEW -lrt -lfbxsdk -lSDL2 -lpthread -ldl
 	  mv $(NAME) ../
 
 clean	:

@@ -13,7 +13,7 @@
 int		find_opt(char *buf)
 {
   int		i;
-  char		opt_tab[6][5] =
+  char		opt_tab[6][3] =
     {
       "-p",
       "-x",
