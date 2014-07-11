@@ -27,29 +27,34 @@ void		show_inv(int *inv)
     }
 }
 
-t_serveur	*add_inventory(t_serveur *s, int fd)
+t_serveur	*pgt(t_serveur *s, int fd, char *buff)
 {
   t_cell	*cell;
+  int		type;
 
   cell = get_cell(s->map, s->ctab[fd].x, s->ctab[fd].y);
+  type = atoi(buff);
+  printf("pgt #%d %d\n", s->ctab[fd].id, type);
   while (cell)
     {
-      s->ctab[fd].inv[cell->type] += 1;
-      del_elem_in_map(s->map, s->ctab[fd].x, s->ctab[fd].x, cell->type);
+      if (cell->type == type)
+	s->ctab[fd].inv[cell->type] += 1;
       cell = cell->next;
     }
+  del_elem_in_map(s->map, s->ctab[fd].x, s->ctab[fd].x, cell->type);
   return (s);
 }
 
-t_serveur	*rm_inventory(t_serveur *s, int fd, char *buff)
+t_serveur	*pdr(t_serveur *s, int fd, char *buff)
 {
-  int		n;
+  int		type;
 
-  n = atoi(buff);
-  while (s->ctab[fd].inv[n] != 0)
+  type = atoi(buff);
+  printf("pdr #%d %d\n", s->ctab[fd].id, type);
+  while (s->ctab[fd].inv[type] != 0)
     {
-      put_in_map(s->map, s->ctab[fd].x, s->ctab[fd].x, n);
-      s->ctab[fd].inv[n] -= 1;
+      put_in_map(s->map, s->ctab[fd].x, s->ctab[fd].x, type);
+      s->ctab[fd].inv[type] -= 1;
     }
   return (s);
 }

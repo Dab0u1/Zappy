@@ -40,7 +40,7 @@
 # define THYSTAME 6
 # define PLAYER 7
 # define EGGS 8
-# define NBR_RES 8
+# define NBR_RES 6
 
 typedef struct		s_monitor
 {
@@ -79,7 +79,6 @@ typedef struct		s_serveur
   int			fd_max; //le fdMax pour le select du serveur
   int			idmax; // id max des clients
   int			fd; // fd du serveur
-
 }			t_serveur;
 
 typedef struct		s_option
@@ -99,6 +98,7 @@ int			initClient(t_serveur *s, int fd, char *team);
 void			initcmd(void);
 int			send_msg(int, char *);
 int			send_msgToAll(t_serveur *, char *);
+int			send_msgToAll_Client(t_serveur *, char *);
 int			send_msgToAll_exeptOne(t_serveur *, char *, int);
 int			send_msgToAll_Monitor(t_serveur *s, char *msg);
 int			opt_p(t_option *option, char **av, int *i);
@@ -115,6 +115,7 @@ int			plv(t_option *option, int fd);
 int			sgt(t_serveur *, int);
 void			msz(int fd, int x, int y);
 int			pdi(t_serveur *s, int i);
+void			pin(t_serveur *, int);
 int			pnw_to_all_monitor(t_serveur *s, int fd);
 int			new_monitor(t_monitor **list, int fd);
 int			del_monitor(t_monitor **list, int fd);
