@@ -48,6 +48,7 @@ SRC_S	= Serveur/main.c \
 	  Serveur/Cmd/pin.c \
 	  Serveur/Cmd/pbc.c \
 	  Serveur/Cmd/inventory.c \
+	  Serveur/Cmd/check.c \
 	  Serveur/Map/generateMap.c \
 	  Serveur/Map/del_elem_in_map.c \
 	  Serveur/Map/mapFunct.c \
